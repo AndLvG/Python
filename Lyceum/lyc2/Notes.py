@@ -8,11 +8,8 @@ notes = {"до": "до-о",
 PITCHES = ["до", "ре", "ми", "фа", "соль", "ля", "си"]
 LONG_PITCHES = ["до-о", "ре-э", "ми-и", "фа-а", "со-оль", "ля-а", "си-и"]
 INTERVALS = ["прима", "секунда", "терция", "кварта", "квинта", "секста", "септима"]
+N = 7
 
-
-# class is_long:
-#     def __init__(self, long=False):
-#         self.long = long
 
 class Note:
     def __init__(self, note, is_long=False):
@@ -20,8 +17,10 @@ class Note:
         self.is_long = is_long
         if self.is_long:
             self.note_ind = LONG_PITCHES.index(notes[note])
+            self.real_name = notes[self.note]
         else:
             self.note_ind = PITCHES.index(note)
+            self.real_name = self.note
 
     def __str__(self):
         if self.is_long:
@@ -48,36 +47,30 @@ class Note:
         return self.note_ind <= other.note_ind
 
     def __lshift__(self, other):
-        if self.is_long:
-            if self.note_ind - other < 0:
-                return LONG_PITCHES[len(LONG_PITCHES) - 1 + self.note_ind - other]
-            else:
-                return LONG_PITCHES[self.note_ind - other]
-        else:
-            if self.note_ind + other < 0:
-                return PITCHES[len(PITCHES) - 1 + self.note_ind - other]
-            else:
-                return PITCHES[self.note_ind - other]
+        ind = self.note_ind - other
+        while ind < 0:
+            ind = len(LONG_PITCHES) + self.note_ind - other
+            other -= N
 
-    # Двоичный
-    # сдвиг
-    # влево, оператор <<.
+        if self.is_long:
+            return Note(PITCHES[ind], True)
+        else:
+            return Note(PITCHES[ind])
+
+    # Двоичный    сдвиг    влево, оператор <<.
 
     def __rshift__(self, other):
-        if self.is_long:
-            if self.note_ind + other > len(LONG_PITCHES) - 1:
-                return LONG_PITCHES[self.note_ind + other - len(LONG_PITCHES)]
-            else:
-                return LONG_PITCHES[self.note_ind + other]
-        else:
-            if self.note_ind + other > len(PITCHES) - 1:
-                return PITCHES[self.note_ind + other - len(PITCHES)]
-            else:
-                return PITCHES[self.note_ind + other]
+        ind = self.note_ind + other
+        while ind > N - 1:
+            ind = self.note_ind + other - N
+            other -= N
 
-    # Двоичный
-    # сдвиг
-    # вправо, оператор >>.
+        if self.is_long:
+            return Note(PITCHES[ind], True)
+        else:
+            return Note(PITCHES[ind])
+
+    # Двоичный сдвиг вправо, оператор >>.
 
     def get_interval(self, other):
         if other.note_ind > self.note_ind:
@@ -114,26 +107,60 @@ class DefaultNote(Note):
         self.is_long = is_long
 
 
-fa1 = Note("фа", True)
-fa2 = Note("фа")
-print(fa1 == fa2)
-print(fa1 > fa2)
-print(fa1 < fa2)
-print(fa1 <= fa2)
+class Melody:
+    def __init__(self, *args):
+        self.Notes_list = []
+        if len(args) > 0:
+            for arg in args[0]:
+                self.Notes_list.append(arg)
 
-la = Note("ля", True)
-print(fa1 < la)
+    def __str__(self):
+        ret = ''
+        for n in self.Notes_list:
+            ret += f'{n.real_name}, '
+        ret = ret[0:-2]
+        return ret.capitalize()
 
-fa2 = Note("фа")
-la = Note("ля", True)
-print(la >> 1)
-print(la >> 2)
-x = fa2 << 4
-print(x)
+    def replace_last(self, new_note):
+        self.Notes_list[-1] = new_note
 
-fa1 = Note("фа", True)
-fa2 = Note("фа")
-la = Note("ля", True)
-print(la.get_interval(fa1))
-print(fa1.get_interval(fa2))
-print(fa1.get_interval(Note('си')))
+    def remove_last(self):
+        self.Notes_list = self.Notes_list[:-1]
+
+    def append(self, new_note):
+        self.Notes_list.append(new_note)
+
+    def __len__(self):
+        return len(self.Notes_list)
+
+    def clear(self):
+        self.Notes_list.clear()
+
+    def __lshift__(self, other):
+        melod = Melody()
+        for note in self.Notes_list:
+            if note.note_ind - other >= 0:
+                melod.append(note << other)
+            else:
+                return self
+        return melod
+
+    def __rshift__(self, other):
+        melod = Melody()
+        for note in self.Notes_list:
+            if note.note_ind + other < N:
+                melod.append(note >> other)
+            else:
+                return self
+        return melod
+
+
+melody = Melody([Note('ля'), Note('соль'), Note('ми'), Note('до', True)])
+print(melody)
+print(Melody() >> 2)
+melody_up = melody >> 1
+melody_down = melody << 1
+melody.replace_last(Note('соль'))
+print('>> 1:', melody_up)
+print('<< 1:', melody_down)
+print(melody)
