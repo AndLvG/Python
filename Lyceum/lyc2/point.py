@@ -3,10 +3,9 @@ class Point:
         self.name = name
         self.x = x
         self.y = y
-        self.cords = (name, self.x, self.y)
+        self.cords = (self.x, self.y)
 
     def __invert__(self):
-        inv = (self.y, self.x)
         return Point(self.name, self.y, self.x)
 
     def get_x(self):
@@ -16,11 +15,24 @@ class Point:
         return self.y
 
     def __str__(self):
-        return f"{self.cords[0]}({self.cords[1]}, {self.cords[2]})"
+        return f"{self.name}({self.x}, {self.y})"
+
+    def get_coords(self):
+        return self.cords
 
 
-point_A = Point('A', 3, -4)
-print(point_A)
-point_B = ~point_A
-print(point_B)
-print(~Point('O', 0, 0))
+class ColoredPoint(Point):
+    def __init__(self, name, x, y, rgb=(0, 0, 0)):
+        super(ColoredPoint, self).__init__(rgb, x, y)
+        self.name = name
+        self.rgb = rgb
+        self.r = rgb[0]
+        self.g = rgb[1]
+        self.b = rgb[2]
+
+    def __invert__(self):
+        return ColoredPoint(self.name, self.y, self.x,
+                            (abs(self.r - 255), abs(self.g - 255), abs(self.b - 255)))
+
+    def get_color(self):
+        return self.rgb

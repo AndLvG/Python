@@ -70,8 +70,6 @@ class Note:
         else:
             return Note(PITCHES[ind])
 
-    # Двоичный сдвиг вправо, оператор >>.
-
     def get_interval(self, other):
         if other.note_ind > self.note_ind:
             return INTERVALS[other.note_ind - self.note_ind]
@@ -122,7 +120,9 @@ class Melody:
         return ret.capitalize()
 
     def replace_last(self, new_note):
-        self.Notes_list[-1] = new_note
+        Notes_list = self.Notes_list
+        Notes_list[-1] = new_note
+        return Notes_list
 
     def remove_last(self):
         self.Notes_list = self.Notes_list[:-1]
@@ -137,21 +137,23 @@ class Melody:
         self.Notes_list.clear()
 
     def __lshift__(self, other):
+        melod1 = self.Notes_list
         melod = Melody()
         for note in self.Notes_list:
             if note.note_ind - other >= 0:
                 melod.append(note << other)
             else:
-                return self
+                return Melody(melod1)
         return melod
 
     def __rshift__(self, other):
+        melod1 = self.Notes_list
         melod = Melody()
         for note in self.Notes_list:
             if note.note_ind + other < N:
                 melod.append(note >> other)
             else:
-                return self
+                return Melody(melod1)
         return melod
 
 
