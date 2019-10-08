@@ -56,22 +56,36 @@ class BellTower:
             bell.sound()
         print('...')
 
+    def print_info(self):
+        n = 1
 
-# Bell("бронзовый").print_info()
-# LittleBell("медный", нота="ля").print_info()
-# BigBell(название="Корноухий", вес="1275 пудов").print_info()
+        for bell in self.bells:
+            print(f'{n} {bell.__class__.__name__}')
+            bell.print_info()
+            n += 1
+        print()
 
-# bells = [BigBell("крупнейший в мире действующий колокол",
-#                  название="Bell of Good Luck", высота="810,8 см",
-#                  диаметр="511,8 см", вес="116 тонн"),
-#          Bell("четвёртый по счёту",
-#               "отлит по приказу императрицы Анны Иоановны",
-#               "ни разу не звонил", название="Царь-колокол",
-#               создан="25 ноября 1735 года", ),
-#          BigBell("появился при храме в 1633 году",
-#                  "в Новый год выполняет функцию курантов, отсчитывая 108 ударов",
-#                  название="Большой колокол храма Тион-ин", диаметр="2,8 м",
-#                  высота="3,3 м", вес="74 тонны")
-#          ]
-# for bell in bells:
-#     bell.print_info()
+
+class SizedBellTower(BellTower):
+    def __init__(self, *args, size):
+        super(SizedBellTower, self).__init__(*args)
+        self.size = size
+        self.bells.clear()
+        for arg in args:
+            if len(self.bells) >= size:
+                self.bells.pop(0)
+            self.bells.append(arg)
+
+    def append(self, bell):
+        if len(self.bells) >= self.size:
+            self.bells.pop(0)
+        self.bells.append(bell)
+
+
+sbt = SizedBellTower(BigBell("бронзовый"),
+                     LittleBell("медный", нота="ля"),
+                     BigBell(название="Корноухий", вес="1275 пудов"),
+                     size=2)
+sbt.print_info()
+sbt.append(BigBell("самый звонкий"))
+sbt.print_info()
