@@ -1,3 +1,6 @@
+# from itertools import product
+
+
 class Bell:
     def __init__(self, *args, **kwargs):
         self.args_positional = []
@@ -67,7 +70,7 @@ class BellTower:
 
 
 class SizedBellTower(BellTower):
-    def __init__(self, *args, size):
+    def __init__(self, *args, size=10):
         super(SizedBellTower, self).__init__(*args)
         self.size = size
         self.bells.clear()
@@ -82,10 +85,33 @@ class SizedBellTower(BellTower):
         self.bells.append(bell)
 
 
-sbt = SizedBellTower(BigBell("бронзовый"),
-                     LittleBell("медный", нота="ля"),
-                     BigBell(название="Корноухий", вес="1275 пудов"),
-                     size=2)
-sbt.print_info()
-sbt.append(BigBell("самый звонкий"))
-sbt.print_info()
+class TypedBellTower(BellTower):
+    def __init__(self, *args, bell_type=LittleBell):
+        super(TypedBellTower, self).__init__(*args)
+        self.bell_type = bell_type
+        self.bells.clear()
+        for arg in args:
+            if arg.__class__.__name__ == bell_type.__name__:
+                self.bells.append(arg)
+
+    def append(self, bell):
+        if bell.__class__.__name__ == self.bell_type.__name__:
+            self.bells.append(bell)
+
+# b_bt = TypedBellTower(BigBell("бронзовый"),
+#                       LittleBell("медный", нота="ля"),
+#                       BigBell(название="Корноухий", вес="1275 пудов"),
+#                       bell_type=BigBell)
+# l_bt = TypedBellTower(BigBell("бронзовый"),
+#                       LittleBell("медный", нота="ля"),
+#                       BigBell(название="Корноухий", вес="1275 пудов"))
+# b_bt.print_info()
+# l_bt.print_info()
+#
+# bb = BigBell("самый звонкий")
+# lb = LittleBell("самый маленький")
+# for bt, bell in product((b_bt, l_bt), (bb, lb)):
+#     bt.append(bell)
+#
+# b_bt.print_info()
+# l_bt.print_info()
