@@ -1,7 +1,5 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QRadioButton, QButtonGroup
-from PyQt5.QtWidgets import QLCDNumber, QSlider, QVBoxLayout, QHBoxLayout, QGroupBox, QGridLayout
-from PyQt5.QtCore import Qt
 
 
 class Krestiki(QWidget):
@@ -14,48 +12,54 @@ class Krestiki(QWidget):
         self.setWindowTitle('Крестики нолики')
 
         # Матрица 3 на 3
-        board = [[None for _ in range(3)] for _ in range(3)]
+        self.board = [[None for _ in range(3)] for _ in range(3)]
 
         # Размер кнопки
         size_cell = 50
 
         for i in range(3):
             for j in range(3):
-                btn = QPushButton(f'b{i}{j}')
+                btn = QPushButton('', self)
                 btn.resize(size_cell, size_cell)
                 btn.move(i * size_cell, j * size_cell)
-                board[i][j] = btn
+                self.board[i][j] = btn
                 btn.clicked.connect(self.push_button)
 
-    #
-    #     label = QLabel('Текущий игрок')
-    #
-    #     b1 = QRadioButton("Игорок 1")
-    #     b1.setChecked(True)
-    #     # b1.toggled.connect(lambda: self.btnstate(self.b1))
-    #     b2 = QRadioButton("Игрок 2")
-    #     # b2.toggled.connect(lambda: self.btnstate(self.b2))
-    #
-    #     group = QButtonGroup()
-    #     group.addButton(b1)
-    #     group.addButton(b2)
-    #     group.buttonClicked.connect(self._on_radio_button_clicked)
-    #
-    #     # layout = QHBoxLayout()
-    #     # layout.addWidget(group1)
-    #     # layout.addWidget(label)
-    #     # layout.addWidget(b1)
-    #     # layout.addWidget(b2)
-    #     #
-    #     # self.setLayout(layout)
-    #
-    # def _on_radio_button_clicked(self, button):
-    #     print(button)
-    #     self.label.setText('Current: ' + button.text())
+        self.label = QLabel('Играет: Игорок 1 (X)', self)
+        self.label.move(170, 10)
+
+        self.b1 = QRadioButton("Игорок 1 (X)", self)
+        self.b1.setChecked(True)
+        self.b1.move(170, 40)
+        self.b1.toggled.connect(lambda: self.btnstate(self.b1))
+        self.b2 = QRadioButton("Игрок 2 (O)", self)
+        self.b2.move(170, 60)
+        self.b2.toggled.connect(lambda: self.btnstate(self.b2))
+
+        b_restart = QPushButton('Начать заново', self)
+        # btn.resize(size_cell, size_cell)
+        b_restart.move(170, 100)
+        b_restart.clicked.connect(self.restart)
+
+
+    def btnstate(self, b):
+        if b.isChecked() == True:
+            self.label.setText('Играет: ' + b.text())
 
     def push_button(self):
+
         sender = self.sender()
-        sender.setText("Нажали")
+        print(sender.text())
+        if sender.text() == '':
+            if self.b1.isChecked():
+                sender.setText("X")
+            else:
+                sender.setText("O")
+
+    def restart(self):
+        for i in range(3):
+            for j in range(3):
+                self.board[i][j].setText("")
 
 
 if __name__ == '__main__':
