@@ -1,4 +1,5 @@
 import sys
+
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QRadioButton
 
 
@@ -11,10 +12,8 @@ class Krestiki(QWidget):
         self.setGeometry(300, 300, 400, 200)
         self.setWindowTitle('Крестики нолики')
 
-        # Матрица 3 на 3
         self.board = [[None for _ in range(3)] for _ in range(3)]
 
-        # Размер кнопки
         size_cell = 50
 
         for i in range(3):
@@ -49,8 +48,10 @@ class Krestiki(QWidget):
         if sender.text() == '' and self.label.text()[:7] != 'Победил':
             if self.b1.isChecked():
                 sender.setText("X")
+                self.b2.setChecked(True)
             else:
                 sender.setText("O")
+                self.b1.setChecked(True)
             self.check_win()
 
     def restart(self):
@@ -61,24 +62,36 @@ class Krestiki(QWidget):
 
     def check_win(self):
         win = ''
-        # По диагонали
-        if self.board[0][0].text() == self.board[1][1].text() == self.board[2][2].text():
+        if self.board[0][0].text() == self.board[1][1].text() == self.board[2][2].text() and self.board[0][
+            0].text() != '':
             win = self.board[0][0].text()
-        # Обратная диагональ
-        if self.board[0][2].text() == self.board[1][1].text() == self.board[2][0].text():
+        if self.board[0][2].text() == self.board[1][1].text() == self.board[2][0].text() and self.board[0][
+            2].text() != '':
             win = self.board[0][2].text()
-        # По горизонтали
+        # for i in range(3):
+        #     if self.board[i][0].text() == self.board[i][1].text() == self.board[i][2].text():
+        #         win = self.board[i][0].text()
         for i in range(3):
-            if self.board[i][0].text() == self.board[i][1].text() == self.board[i][2].text():
-                win = self.board[i][0].text()
-        # По вертикали
-        for i in range(3):
-            if self.board[0][i].text() == self.board[i][1].text() == self.board[i][2].text():
+            if self.board[0][i].text() == self.board[1][i].text() == self.board[2][i].text() and self.board[0][
+                i].text() != '':
                 win = self.board[0][i].text()
+        for el in self.board:
+            a = set(map(lambda x: x.text(), el))
+            if len(a) == 1 and el[0].text() != '':
+                win = el[0].text()
+
+        aa = []
+        for i in range(3):
+            for j in range(3):
+                aa.append(self.board[i][j].text())
+        if '' not in aa:
+            win = 'A'
 
         if win != '':
             if win == 'X':
                 self.label.setText('Победил: ' + self.b1.text())
+            elif win == "A":
+                self.label.setText('Боевая Ничья')
             else:
                 self.label.setText('Победил: ' + self.b2.text())
 
