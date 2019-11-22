@@ -35,6 +35,8 @@ class Project(QMainWindow, Ui_MainWindow):
         self.new_2.clicked.connect(self.add_image)
         # удалить картинку
         self.dell.clicked.connect(self.del_image)
+        # рекдактировать картинку
+        self.fix.clicked.connect(self.fix_image)
 
     # Загрузка данных в список тем
     def load_genres(self):
