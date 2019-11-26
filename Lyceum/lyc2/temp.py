@@ -1,73 +1,94 @@
 import sys
-from PyQt5.QtWidgets import (QMainWindow, QTextEdit, QAction, QFileDialog, QApplication, qApp, QLabel)
+from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QPushButton
+# from PyQt5.QtGui import QPainter, QColor, QPen, QBrush
+from PyQt5.QtCore import Qt, QTimer
 
 
-class MainWindow(QMainWindow):
+class myApp(QWidget):
+
     def __init__(self):
-        super(MainWindow, self).__init__()
-        self.resize(700, 600)
 
-        self.textEdit = QTextEdit()
-        self.setCentralWidget(self.textEdit)
+        QWidget.__init__(self)
 
-        ##############################################
-        #  Строим меню файла
-        ##############################################
+        self.init_ui()
 
-        # меню файла - пункт New
-        newAction = QAction('&Новый', self)
-        newAction.setShortcut('Ctrl+N')
-        newAction.setStatusTip('Новый файл')
-        newAction.triggered.connect(self.newFile)
+    def init_ui(self):
+        self.speed = 10
+        self.timer = QTimer(self)
+        btn_left = QPushButton("влево", self)
+        btn_right = QPushButton("вправо", self)
+        btn_stop = QPushButton("stop", self)
+        btn_left.move(10, 10)
+        btn_right.move(350, 10)
+        btn_stop.move(180, 10)
+        self.x = 200
+        self.y = 150
+        self.setWindowTitle("бегущая строка")
+        self.label = QLabel("бегущая строка", self)
+        self.label.move(self.x, self.y)
+        self.setGeometry(300, 300, 450, 300)
 
-        # меню файла - пункт Open
-        openAction = QAction('&Открыть', self)
-        openAction.setShortcut('Ctrl+O')
-        openAction.setStatusTip('Открыть файл')
-        openAction.triggered.connect(self.openFile)
+        btn_right.clicked.connect(self.buttonClicked)
+        btn_left.clicked.connect(self.buttonClicked)
+        btn_stop.clicked.connect(self.buttonClicked)
 
-        # меню файла - пункт Save As
-        saveasAction = QAction('&Сохранить', self)
-        saveasAction.setShortcut('Ctrl+S')
-        saveasAction.setStatusTip('Сохранить файл')
-        saveasAction.triggered.connect(self.saveAs)
-
-        statusBar = self.statusBar()
-
-        # добавляем элементы в меню
-        menubar = self.menuBar()
-        fileMenu = menubar.addMenu('&Работа с файлом')
-        fileMenu.addAction(newAction)
-        fileMenu.addAction(openAction)
-        fileMenu.addAction(saveasAction)
-
-        self.setGeometry(300, 300, 500, 500)
-        self.setWindowTitle('Реадктор')
         self.show()
 
-    def newFile(self):
-        self.textEdit.setText("")
+    def buttonClicked(self):
+        sender = self.sender()
+        if sender.text() == "вправо":
+            if self.timer.isActive():
+                self.timer.stop()
+                self.timer.timeout.disconnect()
+                self.timer.start(self.speed)
+                self.timer.timeout.connect(self.move_label_right)
+            else:
+                self.timer.start(self.speed)
+                self.timer.timeout.connect(self.move_label_right)
 
-    def openFile(self):
-        # диалог открытия файла
-        fname = QFileDialog.getOpenFileName(self, 'Открываем файл')[0]
-        openedFile = open(fname, 'r', encoding="utf8")
-        txt = openedFile.read()
-        openedFile.close()
-        self.textEdit.setText(txt)
 
-    def saveAs(self):
-        # диалог сохранения файла
-        fname = QFileDialog.getSaveFileName(self)[0]
-        openedFile = open(fname, 'w')
-        txt = self.textEdit.toPlainText()
-        openedFile.write(txt)
-        openedFile.close()
+
+
+        elif sender.text() == "влево":
+            if self.timer.isActive():
+                self.timer.stop()
+                self.timer.timeout.disconnect()
+                self.timer.start(self.speed)
+                self.timer.timeout.connect(self.move_label_left)
+            else:
+                self.timer.start(self.speed)
+                self.timer.timeout.connect(self.move_label_left)
+        elif sender.text() == "stop":
+            self.stop_move()
+
+    def move_label_left(self):
+        if self.x == -100:
+            self.x = 500
+            self.x = self.x - 0.5
+            self.label.move(self.x, self.y)
+
+        else:
+            self.x = self.x - 0.5
+            self.label.move(self.x, self.y)
+
+    def move_label_right(self):
+
+        if self.x == 500:
+            self.x = -100
+            self.x = self.x + 0.5
+            self.label.move(self.x, self.y)
+
+        else:
+            self.x = self.x + 0.5
+            self.label.move(self.x, self.y)
+
+    def stop_move(self):
+        if self.timer.isActive():
+            self.timer.stop()
+            self.timer.timeout.disconnect()
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    # QApplication.setStyle(QStyleFactory.create('Fusion'))
-    myGUI = MainWindow()
-
+    ex = myApp()
     sys.exit(app.exec_())

@@ -18,23 +18,23 @@ class Menu(QMainWindow):
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.drawPixmap(self.rect(), self.image)
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self.drawing = True
-            self.lastPoint = event.pos()
-
-    def mouseMoveEvent(self, event):
-        if event.buttons() and Qt.LeftButton and self.drawing:
-            painter = QPainter(self.image)
-            painter.setPen(QPen(Qt.red, 3, Qt.SolidLine))
-            painter.drawLine(self.lastPoint, event.pos())
-            self.lastPoint = event.pos()
-            self.update()
-
-    def mouseReleaseEvent(self, event):
-        if event.button == Qt.LeftButton:
-            self.drawing = False
+    #
+    # def mousePressEvent(self, event):
+    #     if event.button() == Qt.LeftButton:
+    #         self.drawing = True
+    #         self.lastPoint = event.pos()
+    #
+    # def mouseMoveEvent(self, event):
+    #     if event.buttons() and Qt.LeftButton and self.drawing:
+    #         painter = QPainter(self.image)
+    #         painter.setPen(QPen(Qt.red, 3, Qt.SolidLine))
+    #         painter.drawLine(self.lastPoint, event.pos())
+    #         self.lastPoint = event.pos()
+    #         self.update()
+    #
+    # def mouseReleaseEvent(self, event):
+    #     if event.button == Qt.LeftButton:
+    #         self.drawing = False
 
 
 if __name__ == '__main__':

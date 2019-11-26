@@ -1,0 +1,1 @@
+"C:\Users\Львов\PycharmProjects\Lyceum 2019\venv\Scripts\pyuic5.exe" D:\Lvov\Python\Lyceum\lyc2\ui_file.ui -o D:\Lvov\Python\Lyceum\lyc2\ui_file.py
