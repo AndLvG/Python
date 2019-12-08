@@ -1,27 +1,28 @@
-#  Created by Artem Manchenkov
-#  artyom@manchenkoff.me
-#
-#  Copyright © 2019
-#
-#  Примеры базового синтаксиса и работа с типами данных
-#  Числа, строки, списки, булево значение
-#
+import pygame
+from pygame import draw
 
-a = 1 + 2
-a = a + a
+flag = True
+flag2 = True
+pygame.init()
+size, coun = input().split()
+rasdel = int(size) // int(coun)
+screen = pygame.display.set_mode([int(size), int(size)])
+screen.fill((255, 255, 255))
 
-integer_number = 10  # int
-float_number = 10.4  # float
-
-string_value = "Text"  # str
-string_value = string_value * 2  # = TextText
-string_value = string_value + string_value
-
-string_value.lower()
-
-numbers = [1, 2, 3, 4, "Test", 10.5]  # list
-
-a = True  # bool
-a = False
-
-result = 10 > 5
+while pygame.event.wait().type != pygame.QUIT:
+    for i in range(0, int(size), rasdel):
+        for j in range(0, int(size), rasdel):
+            if flag:
+                draw.rect(screen, (0, 0, 0),
+                          (i, j, i + rasdel, j + rasdel))
+                flag = False
+            else:
+                flag = True
+            pygame.display.flip()
+    # if flag2:
+    #     flag = False
+    #     flag2 = False
+    # else:
+    #     flag = True
+    #     flag2 = True
+pygame.quit()
