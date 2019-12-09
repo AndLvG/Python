@@ -1,42 +1,36 @@
-import pygame
+# подключаем графическую библиотеку
+from tkinter import *
 
-screen = pygame.display.set_mode((501, 501))
-running = True
-x_krug = 250
-y_krug = 250
-xpos = False
-pygame.draw.circle(screen, (255, 0, 0), (x_krug, y_krug), 20)
-x_pos = 250
-y = 250
-y_pos = 250
-x = 250
-screen.fill((0, 0, 0))
-clock = pygame.time.Clock()
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.MOUSEBUTTONUP:
-            xpos = True
-        if event.type == pygame.MOUSEMOTION:
-            x, y = event.pos
-    if xpos:
-        rasmer = 0
-        x_pos, y_pos = x, y
-        xpos = False
-    screen.fill((0, 0, 0))
-    pygame.draw.circle(screen, (255, 0, 0), (x_krug, y_krug), 20)
-    if y_krug < y_pos:
-        y_krug += 1
-    elif y_krug == y_pos:
-        y_krug = y_krug
-    else:
-        y_krug -= 1
-    if x_krug < x_pos:
-        x_krug += 1
-    elif x_krug == x_pos:
-        x_krug = x_krug
-    else:
-        x_krug -= 1
-    clock.tick(60)
-    pygame.display.flip()
+# подключаем модули, которые отвечают за время и случайные числа
+
+import time
+
+import random
+
+# создаём новый объект — окно с игровым полем. В нашем случае переменная окна называется tk, и мы его сделали из класса Tk() — он есть в графической библиотеке
+
+tk = Tk()
+
+# делаем заголовок окна — Games с помощью свойства объекта title
+
+tk.title('Game')
+
+# запрещаем менять размеры окна, для этого используем свойство resizable
+
+tk.resizable(0, 0)
+
+# помещаем наше игровое окно выше остальных окон на компьютере, чтобы другие окна не могли его заслонить
+
+tk.wm_attributes('-topmost', 1)
+
+# создаём новый холст — 400 на 500 пикселей, где и будем рисовать игру
+
+canvas = Canvas(tk, width=500, height=400, highlightthickness=0)
+
+# говорим холсту, что у каждого видимого элемента будут свои отдельные координаты
+
+canvas.pack()
+
+# обновляем окно с холстом
+
+tk.update()
