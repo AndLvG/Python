@@ -1,15 +1,28 @@
 import pygame
-
+import math
+from pygame.locals import *
+SIZE = 800, 800
 pygame.init()
-screen = pygame.display.set_mode((300, 200))
-screen.fill(pygame.Color('white'))
+screen = pygame.display.set_mode(SIZE)
+FPSCLOCK = pygame.time.Clock()
+done = False
+screen.fill((0, 0, 0))
+degree=0
+while not done:
+    screen.fill(0)
+    for e in pygame.event.get():
+        if e.type == QUIT or (e.type == KEYDOWN and e.key == K_ESCAPE):
+            done = True
+            break
+    for x in range(1,400,10):
+        pygame.draw.circle(screen,(255,255,255),(400,400),x,1)
+    radar = (400,400)
+    radar_len = 400
+    x = radar[0] + math.cos(math.radians(degree)) * radar_len
+    y = radar[1] + math.sin(math.radians(degree)) * radar_len
 
-while pygame.event.wait().type != pygame.QUIT:
-    for i in range(0, 200, 17):
-        for j in range(0, 300, 32):
-            if i % (17 * 2) == 0:
-                pygame.draw.rect(screen, pygame.Color('red'), (j, i, 30, 15))
-            else:
-                pygame.draw.rect(screen, pygame.Color('red'), (j - 15, i, 30, 15))
-            pygame.display.flip()
-pygame.quit()
+    # then render the line radar->(x,y)
+    pygame.draw.line(screen, Color("red"), radar, (x,y), 1)
+    pygame.display.flip()
+    degree+=2
+    FPSCLOCK.tick(60)

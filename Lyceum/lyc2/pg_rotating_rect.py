@@ -33,9 +33,10 @@ while not done:
     rotRect.center = oldCenter
     screen.blit(rotatedSurf, rotRect)
 
-    degree -= 5
+    degree -= 15
+    print(degree)
     if degree < 0:
-        degree = 360
+        degree = 36000
 
     pygame.display.flip()
 
