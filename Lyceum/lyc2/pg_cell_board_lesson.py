@@ -27,7 +27,8 @@ class Board:
 
     def get_click(self, mouse_pos):
         cell = self.get_cell(mouse_pos)
-        self.on_click(cell)
+        # self.on_click(cell)
+        self.three_colors(cell)
 
     def get_cell(self, mouse_pos):
         x = (mouse_pos[0] - self.left) // self.cell_size
@@ -40,12 +41,20 @@ class Board:
     def on_click(self, cell):
         if not cell:
             return
-        print(cell)
+        # print(cell)
         for x in range(self.width):
             self.board[cell[0]][x] = abs(self.board[cell[0]][x] - 1)
         for y in range(self.height):
             if y != cell[0]:
                 self.board[y][cell[1]] = abs(self.board[y][cell[1]] - 1)
+
+    def three_colors(self, cell):
+        if not cell:
+            return
+        if self.board[cell[0]][cell[1]] == 2:
+            self.board[cell[0]][cell[1]] = 0
+        else:
+            self.board[cell[0]][cell[1]] += 1
 
 
 pygame.init()
@@ -55,7 +64,7 @@ screen = pygame.display.set_mode((500, 500))
 running = True
 while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT  or (event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE):
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             board.get_click(event.pos)
