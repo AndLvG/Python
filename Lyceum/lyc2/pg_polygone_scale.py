@@ -11,9 +11,11 @@ for el in array:
 pygame.init()
 screen = pygame.display.set_mode((501, 501))
 running = True
+surf = pygame.Surface((501, 501))
+surf.fill(pygame.Color('black'))
+pygame.draw.polygon(surf, (255, 255, 255), arr, 1)
+scale = 1
 
-again_new = []
-k = 1
 while running:
     screen.fill(pygame.Color('black'))
     for event in pygame.event.get():
@@ -21,20 +23,13 @@ while running:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 4:
-                k = 2
-            elif event.button == 5:
-                k = - 2
-            for i in range(len(arr)):
-                x, y = arr[i]
-                if y - 251 > 0:
-                    y += k
-                else:
-                    y -= k
-                if x - 251 > 0:
-                    x += k
-                else:
-                    x -= k
-                arr[i] = x, y
-    pygame.draw.polygon(screen, (255, 255, 255), arr, 1)
+                scale += 1
+            elif event.button == 5 and scale > 1:
+                scale -= 1
+
+    newSurf = pygame.transform.scale(surf, (501 * scale, 501 * scale))
+    newRect = newSurf.get_rect()
+    newRect.center = (251, 251)
+    screen.blit(newSurf, newRect)
     pygame.display.flip()
 pygame.quit()

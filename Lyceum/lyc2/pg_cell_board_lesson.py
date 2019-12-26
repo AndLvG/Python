@@ -64,10 +64,11 @@ screen = pygame.display.set_mode((500, 500))
 running = True
 while running:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT  or (event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE):
+        if event.type == pygame.QUIT or (event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE):
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             board.get_click(event.pos)
     screen.fill((0, 0, 0))
     board.render()
     pygame.display.flip()
+pygame.quit()

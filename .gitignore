@@ -103,3 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 /Python (2018)/
+
+Lyceum/lyc2/.idea/
