@@ -1,13 +1,11 @@
-# Игра Shmup - 6 часть
-# анимация спрайтов
 import pygame
 import random
 from os import path
 
-img_dir = path.join(path.dirname(__file__), 'CarGame')
+img_dir = path.join(path.dirname(__file__), 'Data')
 
-WIDTH = 480
-HEIGHT = 600
+WIDTH = 1200
+HEIGHT = 500
 FPS = 30
 
 # Задаем цвета
@@ -22,7 +20,7 @@ YELLOW = (255, 255, 0)
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Shmup!")
+pygame.display.set_caption("Platypus II")
 clock = pygame.time.Clock()
 
 
@@ -30,29 +28,29 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.transform.scale(player_img, (50, 38))
-        self.image.set_colorkey(BLACK)
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.radius = 20
-        # pygame.draw.circle(self.image, RED, self.rect.center, self.radius)
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT - 10
-        self.speedx = 0
+        self.rect.centery = HEIGHT / 2
+        self.rect.left = 10
+        self.speedy = 0
 
     def update(self):
         self.speedx = 0
         keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_LEFT]:
-            self.speedx = -8
-        if keystate[pygame.K_RIGHT]:
-            self.speedx = 8
-        self.rect.x += self.speedx
-        if self.rect.right > WIDTH:
-            self.rect.right = WIDTH
-        if self.rect.left < 0:
-            self.rect.left = 0
+        if keystate[pygame.K_UP]:
+            self.speedy = -8
+            self.rect.y += self.speedy
+        if keystate[pygame.K_DOWN]:
+            self.speedy = 8
+            self.rect.y += self.speedy
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+        if self.rect.y < 0:
+            self.rect.y = 0
 
     def shoot(self):
-        bullet = Bullet(self.rect.centerx, self.rect.top)
+        bullet = Bullet(self.rect.right,self.rect.centery )
         all_sprites.add(bullet)
         bullets.add(bullet)
 
@@ -60,16 +58,15 @@ class Player(pygame.sprite.Sprite):
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image_orig = random.choice(meteor_images)
-        self.image_orig.set_colorkey(BLACK)
+        self.image_orig = random.choice(ufo_images)
+        self.image_orig.set_colorkey(-1)
         self.image = self.image_orig.copy()
         self.rect = self.image.get_rect()
         self.radius = int(self.rect.width * .85 / 2)
-        # pygame.draw.circle(self.image, RED, self.rect.center, self.radius)
-        self.rect.x = random.randrange(WIDTH - self.rect.width)
-        self.rect.y = random.randrange(-150, -100)
-        self.speedy = random.randrange(1, 8)
-        self.speedx = random.randrange(-3, 3)
+        self.rect.x = WIDTH +150
+        self.rect.y = random.randrange(HEIGHT - self.rect.height)
+        self.speedy = random.randrange(-1, 1)
+        self.speedx = random.randrange(-12, -1)
         self.rot = 0
         self.rot_speed = random.randrange(-8, 8)
         self.last_update = pygame.time.get_ticks()
@@ -86,49 +83,48 @@ class Mob(pygame.sprite.Sprite):
             self.rect.center = old_center
 
     def update(self):
-        self.rotate()
+        # self.rotate()
         self.rect.x += self.speedx
         self.rect.y += self.speedy
-        if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
-            self.rect.x = random.randrange(WIDTH - self.rect.width)
-            self.rect.y = random.randrange(-100, -40)
-            self.speedy = random.randrange(1, 8)
+        if self.rect.x < -10 or self.rect.y < -25 or self.rect.bottom > HEIGHT + 20:
+            self.rect.x = WIDTH +150
+            self.rect.y = random.randrange(HEIGHT - self.rect.height)
+            self.speedx =  random.randrange(-12, -1)
 
 
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = bullet_img
+        self.image = pygame.transform.scale(bullet_img, (60, 30))
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
-        self.rect.bottom = y
-        self.rect.centerx = x
-        self.speedy = -10
+        self.rect.left = x
+        self.rect.centery = y
+        self.speedy = 10
 
     def update(self):
-        self.rect.y += self.speedy
+        self.rect.x += self.speedy
         # убить, если он заходит за верхнюю часть экрана
-        if self.rect.bottom < 0:
+        if self.rect.x > WIDTH:
             self.kill()
 
 
 # Загрузка всей игровой графики
-background = pygame.image.load(path.join(img_dir, "car1.png")).convert()
+background = pygame.image.load(path.join(img_dir, "stars_background.png")).convert()
 background_rect = background.get_rect()
-player_img = pygame.image.load(path.join(img_dir, "car2.png")).convert()
-bullet_img = pygame.image.load(path.join(img_dir, "car3.png")).convert()
-meteor_images = []
-meteor_list = ['car4.png', 'car5.png', 'car6.png',
-               'car7.png', 'car8.png', 'car9.png']
-for img in meteor_list:
-    meteor_images.append(pygame.image.load(path.join(img_dir, img)).convert())
+player_img = pygame.image.load(path.join(img_dir, "platypus.png")).convert()
+bullet_img = pygame.image.load(path.join(img_dir, "lazer.png")).convert()
+ufo_images = []
+for i in range(1, 13):
+    ufo_images.append(pygame.transform.scale(pygame.image.load(path.join(img_dir, 'ufo'+str(i)+'.png')).convert(), (70, 50)))
+
 
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
-for i in range(8):
+for i in range(15):
     m = Mob()
     all_sprites.add(m)
     mobs.add(m)
