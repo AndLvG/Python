@@ -8,19 +8,13 @@ done = False
 clock = pygame.time.Clock()
 Cursor = pygame.image.load('data/arrow.png')
 
-
-def draw_cursor(screen, x, y):
-    screen.blit(Cursor, (x, y))
-
-
 while done == False:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
     screen.fill(pygame.Color('Black'))
-    pos = pygame.mouse.get_pos()
-    x, y = pos[0], pos[1]
-    draw_cursor(screen, x, y)
+    if pygame.mouse.get_focused():
+        screen.blit(Cursor, pygame.mouse.get_pos())
     pygame.display.flip()
     clock.tick(60)
 
