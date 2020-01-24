@@ -1,10 +1,13 @@
 import pygame
 import random
+import time
 from os import path
 
 img_dir = path.join(path.dirname(__file__), 'data\img')
 snd_dir = path.join(path.dirname(__file__), 'data\snd')
 explode_dir = path.join(path.dirname(__file__), 'data\explodes')
+
+background = None
 
 WIDTH = 1200
 HEIGHT = 500
@@ -37,6 +40,7 @@ def draw_text(surf, text, size, x, y):
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
     surf.blit(text_surface, text_rect)
+
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -76,7 +80,6 @@ class Player(pygame.sprite.Sprite):
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
 
-
     def shoot(self):
         bullet = Bullet(self.rect.right, self.rect.centery)
         all_sprites.add(bullet)
@@ -87,25 +90,48 @@ class Player(pygame.sprite.Sprite):
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image_orig = random.choice(ufo_images)
+        im = random.randint(1, 13)
+        self.image_orig = ufo_images[im - 1]
         self.image_orig.set_colorkey(-1)
         self.image = self.image_orig.copy()
         self.rect = self.image.get_rect()
         self.radius = int(self.rect.width * .85 / 2)
+        if im in [1, 4, 9, 10]:
+            self.type = 1
+        else:
+            self.type = 2
         self.rect.x = WIDTH + 150
-        self.rect.y = random.randrange(HEIGHT - self.rect.height)
         self.speedy = random.randrange(-1, 1)
+        self.dy = 1
+        self.vy = 0
+        self.rect.y = random.randrange(HEIGHT - self.rect.height)
         self.speedx = random.randrange(-12, -1)
         self.last_update = pygame.time.get_ticks()
-
+        self.tick = time.time()
 
     def update(self):
         self.rect.x += self.speedx
-        self.rect.y += self.speedy
+        if self.type == 1:
+            self.vy += self.dy
+            if self.vy > 10 or self.vy < -10:
+                self.dy *= -1
+            self.rect.y += self.vy
+            if time.time() - self.tick > 2:
+                self.shoot()
+                self.tick = time.time()
+        else:
+            self.rect.y += self.speedy
+
         if self.rect.x < -10 or self.rect.y < -25 or self.rect.bottom > HEIGHT + 20:
             self.rect.x = WIDTH + 150
             self.rect.y = random.randrange(HEIGHT - self.rect.height)
             self.speedx = random.randrange(-12, -1)
+
+    def shoot(self):
+        mob_shot = Mob_shot(self.rect.left, self.rect.centery)
+        all_sprites.add(mob_shot)
+        mob_shots.add(mob_shot)
+        # shot.play()
 
 
 class Bullet(pygame.sprite.Sprite):
@@ -122,6 +148,22 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.x += self.speedy
         # убить, если он заходит за правую часть экрана
         if self.rect.x > WIDTH:
+            self.kill()
+
+class Mob_shot(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.transform.scale(mob_shot_img, (90, 20))
+        # self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.left = x
+        self.rect.centery = y
+        self.speedx = 30
+
+    def update(self):
+        self.rect.x -= self.speedx
+        # убить, если он заходит за правую часть экрана
+        if self.rect.right < 0:
             self.kill()
 
 
@@ -149,6 +191,7 @@ class Explosion(pygame.sprite.Sprite):
                 self.rect = self.image.get_rect()
                 self.rect.center = center
 
+
 def HP(surf, x, y, pct):
     if pct < 0:
         pct = 0
@@ -160,19 +203,34 @@ def HP(surf, x, y, pct):
     pygame.draw.rect(surf, GREEN, fill_rect)
     pygame.draw.rect(surf, WHITE, outline_rect, 1)
 
+
 def newmob():
     m = Mob()
     all_sprites.add(m)
     mobs.add(m)
 
+
+def scrollBackground():
+    background_rect1.x -= 5
+    background_rect2.x -= 5
+    if background_rect1.right < 0:
+        background_rect1.x = WIDTH
+    if background_rect2.right < 0:
+        background_rect2.x = WIDTH
+
+
 def start_screen():
-    screen.blit(background, background_rect)
+    background_rect1.x = 0
+    background_rect2.x = WIDTH + 1
+    screen.blit(background1, background_rect1)
     draw_text(screen, "Platypus II", 64, WIDTH / 2, HEIGHT / 4)
     draw_text(screen, "Стрелками двигай пробелом стреляй", 22,
               WIDTH / 2, HEIGHT / 2)
     draw_text(screen, "Нажми любую клавишу", 18, WIDTH / 2, HEIGHT * 3 / 4)
     pygame.display.flip()
     waiting = True
+    time.sleep(2)
+    pygame.event.clear()
     while waiting:
         clock.tick(FPS)
         for event in pygame.event.get():
@@ -181,14 +239,26 @@ def start_screen():
             if event.type == pygame.KEYUP:
                 waiting = False
 
+def Game_over():
+    global game_over, best_score
+    game_over = True
+    if score > best_score:
+        best_score = score
+
+
 # Загрузка всей игровой графики
-background = pygame.image.load(path.join(img_dir, "stars_background.png")).convert()
-background_rect = background.get_rect()
+background1 = pygame.image.load(path.join(img_dir, "stars_background.png")).convert()
+background_rect1 = background1.get_rect()
+background2 = pygame.image.load(path.join(img_dir, "stars_background.png")).convert()
+background_rect2 = background2.get_rect()
+background_rect2.x = WIDTH + 1
+
 player_img = pygame.image.load(path.join(img_dir, "platypus.png")).convert()
 bullet_img = pygame.image.load(path.join(img_dir, "lazer.png")).convert()
+mob_shot_img = pygame.image.load(path.join(img_dir, "mob_shot.gif")).convert()
 # Захватчики
 ufo_images = []
-for i in range(1, 13):
+for i in range(1, 14):
     ufo_images.append(
         pygame.transform.scale(pygame.image.load(path.join(img_dir, 'ufo{}.png'.format(i))).convert(), (70, 50)))
 # Взрывы
@@ -214,6 +284,7 @@ pygame.mixer.music.set_volume(0.4)
 all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
+mob_shots = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
 for i in range(ufos):
@@ -227,10 +298,25 @@ best_score = 0
 # Цикл игры
 pygame.mixer.music.play(loops=-1)
 game_over = True
+start = True
+image_game_over = pygame.image.load(path.join(img_dir, "gameover.png")).convert()
+image_game_over = pygame.transform.scale(image_game_over, (WIDTH, HEIGHT))
+game_over_x = - WIDTH
+
 running = True
 
 while running:
     if game_over:
+        pygame.event.clear
+        if start == False:
+            while game_over_x < 0:
+                clock.tick(FPS)
+                game_over_x += 15
+                screen.blit(image_game_over, (game_over_x, 1))
+                pygame.display.update()
+            time.sleep(2)
+            game_over_x = - WIDTH
+        start = False
         start_screen()
         game_over = False
         all_sprites = pygame.sprite.Group()
@@ -272,10 +358,21 @@ while running:
     hits = pygame.sprite.spritecollide(player, mobs, False, pygame.sprite.collide_circle)
     for hit in hits:
         player.shield -= 20
+        explode_player.play()
+        expl = Explosion(hit.rect.center, 'sm')
+        all_sprites.add(expl)
+        hit.kill()
+        newmob()
+        if player.shield <= 0:
+            Game_over()
+            game_over = True
+            if score > best_score:
+                best_score = score
 
-        m = Mob()
-        all_sprites.add(m)
-        mobs.add(m)
+    # Проверка, попал ли выстрел моба игрока
+    hits = pygame.sprite.spritecollide(player, mob_shots, False, pygame.sprite.collide_circle)
+    for hit in hits:
+        player.shield -= 20
         explode_player.play()
         expl = Explosion(hit.rect.center, 'sm')
         all_sprites.add(expl)
@@ -287,7 +384,9 @@ while running:
 
     # Рендеринг
     screen.fill(BLACK)
-    screen.blit(background, background_rect)
+    screen.blit(background1, background_rect1)
+    screen.blit(background2, background_rect2)
+    scrollBackground()
     all_sprites.draw(screen)
     draw_text(screen, f'Сбито захватчиков {ufo}, Счёт {str(score)}, Лучший результат {best_score}', 18, WIDTH / 2, 10)
 
