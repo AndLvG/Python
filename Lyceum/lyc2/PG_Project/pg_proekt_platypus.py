@@ -10,11 +10,12 @@ explode_dir = path.join(path.dirname(__file__), 'data\explodes')
 background = None
 
 # Экран
-WIDTH = 1200
-HEIGHT = 500
+
+# WIDTH = 1200
+# HEIGHT = 500
 FPS = 30
 # Сколько захватчиков
-ufos = 15
+ufos = 20
 
 # Задаем цвета
 WHITE = (255, 255, 255)
@@ -26,8 +27,10 @@ YELLOW = (255, 255, 0)
 
 # Создаем игру и окно
 pygame.init()
+WIDTH = pygame.display.Info().current_w
+HEIGHT = pygame.display.Info().current_h
 pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen = pygame.display.set_mode((WIDTH, HEIGHT),pygame.FULLSCREEN | pygame.DOUBLEBUF)
 pygame.display.set_caption("Platypus II")
 pygame.display.set_icon(pygame.image.load(path.join(img_dir, "platypus.png")))
 clock = pygame.time.Clock()
@@ -259,11 +262,11 @@ def Game_over():
 
 
 # Загрузка всей игровой графики
-background1 = pygame.image.load(
-    path.join(img_dir, "stars_background.png")).convert()
+background1 = pygame.transform.scale(pygame.image.load(
+    path.join(img_dir, "stars_background.png")).convert(), (WIDTH, HEIGHT))
 background_rect1 = background1.get_rect()
-background2 = pygame.image.load(
-    path.join(img_dir, "stars_background.png")).convert()
+background2 = pygame.transform.scale(pygame.image.load(
+    path.join(img_dir, "stars_background.png")).convert(), (WIDTH, HEIGHT))
 background_rect2 = background2.get_rect()
 background_rect2.x = WIDTH + 1
 
