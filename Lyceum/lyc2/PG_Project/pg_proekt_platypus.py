@@ -9,6 +9,7 @@ explode_dir = path.join(path.dirname(__file__), 'data\explodes')
 
 background = None
 
+# Экран
 WIDTH = 1200
 HEIGHT = 500
 FPS = 30
@@ -31,11 +32,14 @@ pygame.display.set_caption("Platypus II")
 pygame.display.set_icon(pygame.image.load(path.join(img_dir, "platypus.png")))
 clock = pygame.time.Clock()
 
-font_name = pygame.font.match_font('Verdana')
+# font_name = pygame.font.match_font('Sergoe')
+font_platypus = pygame.font.Font(
+    path.join(path.dirname(__file__), 'data\platypus_font.ttf'), 90)
+font_text = pygame.font.Font(path.join(path.dirname(__file__), 'data\pl_font.ttf'), 40)
+font_text18 = pygame.font.Font(path.join(path.dirname(__file__), 'data\pl_font.ttf'), 18)
 
-
-def draw_text(surf, text, size, x, y):
-    font = pygame.font.Font(font_name, size)
+def draw_text(surf, font, text, x, y):
+    # font = pygame.font.Font(font_name, size)
     text_surface = font.render(text, True, YELLOW)
     text_rect = text_surface.get_rect()
     text_rect.midtop = (x, y)
@@ -150,6 +154,7 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.x > WIDTH:
             self.kill()
 
+
 class Mob_shot(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
@@ -223,10 +228,16 @@ def start_screen():
     background_rect1.x = 0
     background_rect2.x = WIDTH + 1
     screen.blit(background1, background_rect1)
-    draw_text(screen, "Platypus II", 64, WIDTH / 2, HEIGHT / 4)
-    draw_text(screen, "Стрелками двигай пробелом стреляй", 22,
+    draw_text(screen, font_platypus, "Platypus II", WIDTH / 2, HEIGHT / 4 - 80)
+    draw_text(screen, font_text, f'Лучший результат {best_score}',
+              WIDTH / 2, HEIGHT / 4 + 50)
+    draw_text(screen, font_text, "Стрелками двигай пробелом стреляй",
               WIDTH / 2, HEIGHT / 2)
-    draw_text(screen, "Нажми любую клавишу", 18, WIDTH / 2, HEIGHT * 3 / 4)
+    draw_text(screen, font_text, "ESC - Выход",
+              WIDTH / 2, HEIGHT / 2 + 50)
+
+    draw_text(screen, font_text18, "Нажми любую клавишу для игры (кроме ESC)",
+              WIDTH / 2, HEIGHT * 3 / 4)
     pygame.display.flip()
     waiting = True
     time.sleep(2)
@@ -239,6 +250,7 @@ def start_screen():
             if event.type == pygame.KEYUP:
                 waiting = False
 
+
 def Game_over():
     global game_over, best_score
     game_over = True
@@ -247,9 +259,11 @@ def Game_over():
 
 
 # Загрузка всей игровой графики
-background1 = pygame.image.load(path.join(img_dir, "stars_background.png")).convert()
+background1 = pygame.image.load(
+    path.join(img_dir, "stars_background.png")).convert()
 background_rect1 = background1.get_rect()
-background2 = pygame.image.load(path.join(img_dir, "stars_background.png")).convert()
+background2 = pygame.image.load(
+    path.join(img_dir, "stars_background.png")).convert()
 background_rect2 = background2.get_rect()
 background_rect2.x = WIDTH + 1
 
@@ -299,7 +313,8 @@ best_score = 0
 pygame.mixer.music.play(loops=-1)
 game_over = True
 start = True
-image_game_over = pygame.image.load(path.join(img_dir, "gameover.png")).convert()
+image_game_over = pygame.image.load(
+    path.join(img_dir, "gameover.png")).convert()
 image_game_over = pygame.transform.scale(image_game_over, (WIDTH, HEIGHT))
 game_over_x = - WIDTH
 
@@ -355,7 +370,8 @@ while running:
         explode.play()
 
     # Проверка, не ударил ли моб игрока
-    hits = pygame.sprite.spritecollide(player, mobs, False, pygame.sprite.collide_circle)
+    hits = pygame.sprite.spritecollide(
+        player, mobs, False, pygame.sprite.collide_circle)
     for hit in hits:
         player.shield -= 20
         explode_player.play()
@@ -370,7 +386,8 @@ while running:
                 best_score = score
 
     # Проверка, попал ли выстрел моба игрока
-    hits = pygame.sprite.spritecollide(player, mob_shots, False, pygame.sprite.collide_circle)
+    hits = pygame.sprite.spritecollide(
+        player, mob_shots, False, pygame.sprite.collide_circle)
     for hit in hits:
         player.shield -= 20
         explode_player.play()
@@ -388,7 +405,8 @@ while running:
     screen.blit(background2, background_rect2)
     scrollBackground()
     all_sprites.draw(screen)
-    draw_text(screen, f'Сбито захватчиков {ufo}, Счёт {str(score)}, Лучший результат {best_score}', 18, WIDTH / 2, 10)
+    draw_text(
+        screen, font_text18, f'Сбито захватчиков {ufo}, Счёт {str(score)}, Лучший результат {best_score}', WIDTH / 2, 10)
 
     HP(screen, player.rect.x, player.rect.y + 45, player.shield)
     pygame.display.flip()
