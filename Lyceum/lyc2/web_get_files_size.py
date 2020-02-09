@@ -10,15 +10,12 @@ def human_read_format(size):
     return f"{round(size)}{bites[c]}"
 
 
-def get_ﬁles_sizes(filenames):
+def get_ﬁles_sizes():
     files = []
-    for el in filenames:
+    for el in next(os.walk(os.getcwd()))[2]:
         size = os.path.getsize(f"{os.getcwd()}/{el}")
         files.append(f"{el} {human_read_format(size)}")
     return "\n".join(files)
 
 
-filenames = next(os.walk(os.getcwd()))[2]
-files_size = get_ﬁles_sizes(filenames)
-
-print(files_size)
+# print(get_ﬁles_sizes())
