@@ -1,9 +1,7 @@
 import re
 
-ENG = "qwertyuiopasdfghjklzxcvbnm"
-RUS = "йцукенгшщзхъфывапролджэячсмитьбю"
-
-
+ENG = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+RUS = ["йцукенгшщзхъ", "фывапролджэ", "ячсмитьбю", "фывапролджэё"]
 
 
 def check_len(p):
@@ -19,9 +17,15 @@ def check_number(p):
 
 
 def check_klawa(p):
-    for i in range(0, len(p) - 3):
-        if p[i:i + 2].lower() in ENG or p[i:i + 2].lower() in RUS:
-            return False
+    for i in range(0, len(p) - 2):
+        for el in ENG:
+            for y in range(len(el) - 2):
+                if el[y] + el[y + 1] + el[y + 2] in p.lower():
+                    return False
+        for el in RUS:
+            for y in range(len(el) - 2):
+                if el[y] + el[y + 1] + el[y + 2] in p.lower():
+                    return False
     return True
 
 
@@ -42,7 +46,8 @@ class DigitError(PasswordError):
 
 
 class SequenceError(PasswordError):
-    # если пароль нарушает требование к последовательности из подряд идущих трех символов (указано в предыдущей задаче).
+    # если пароль нарушает требование к последовательности из подряд идущих трех символов
+    # (указано в предыдущей задаче).
     pass
 
 
@@ -74,11 +79,12 @@ def check_password(password):
             print(pe.__class__.__name__)
             return False
     return True
-           
+
+
 def process():
     while True:
         try:
-            passwd = input('Введите пароль: ')
+            passwd = input()
             if passwd == 'Ctrl+Break':
                 raise KeyboardInterrupt
             if check_password(passwd):

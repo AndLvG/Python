@@ -1,9 +1,9 @@
 import re
 
-ENG = "qwertyuiopasdfghjklzxcvbnm"
-RUS = "йцукенгшщзхъфывапролджэячсмитьбю"
+ENG = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+RUS = ["йцукенгшщзхъ", "фывапролджэ", "ячсмитьбю", "фывапролджэё"]
 
-passwd = input('Введите пароль: ')
+passwd = input()
 
 
 def check_len(p):
@@ -11,7 +11,9 @@ def check_len(p):
 
 
 def check_letters(p):
-    if not re.search('[A-ZА-Я]', p) and re.search('[a-zа-я]', p):
+    if not re.search('[A-ZА-Я]', p):
+        raise AssertionError
+    if not re.search('[a-zа-я]', p):
         raise AssertionError
 
 
@@ -22,8 +24,14 @@ def check_number(p):
 
 def check_klawa(p):
     for i in range(0, len(p) - 2):
-        if p[i:i + 2].lower() in ENG or p[i:i + 2].lower() in RUS:
-            raise AssertionError
+        for el in ENG:
+            for y in range(len(el) - 2):
+                if el[y] + el[y + 1] + el[y + 2] in p.lower():
+                    raise AssertionError
+        for el in RUS:
+            for y in range(len(el) - 2):
+                if el[y] + el[y + 1] + el[y + 2] in p.lower():
+                    raise AssertionError
 
 
 flag = True
@@ -33,8 +41,7 @@ for func in (check_len, check_letters, check_number, check_klawa):
     except AssertionError as a:
         flag = False
 
-
 if flag:
-    print('ok') 
+    print('ok')
 else:
     print('error')

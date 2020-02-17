@@ -3,6 +3,10 @@ import re
 ENG = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
 RUS = ["йцукенгшщзхъ", "фывапролджэ", "ячсмитьбю", "фывапролджэё"]
 
+top_passwd = open("top 10000 passwd.txt").read().split()
+top_words = open("top-9999-words.txt").read().split()
+exceptions = {}
+
 
 def check_len(p):
     return len(p) > 8
@@ -51,50 +55,51 @@ class SequenceError(PasswordError):
     pass
 
 
+class WordError(PasswordError):
+    # В пароле должны отсутствовать словарные слова
+    pass
+
+
 def Length(p):
     if len(p) < 9:
+        exceptions['LengthError'] = exceptions.get('LengthError', 0) + 1
         raise LengthError()
 
 
 def Letter(p):
-    if p == p.lower() or p == p.upper():
+    if not check_letters(p):
+        exceptions['LetterError'] = exceptions.get('LetterError', 0) + 1
         raise LetterError()
 
 
 def Digit(p):
     if not check_number(p):
+        exceptions['DigitError'] = exceptions.get('DigitError', 0) + 1
         raise DigitError()
 
 
 def Sequence(p):
     if not check_klawa(p):
+        exceptions['SequenceError'] = exceptions.get('SequenceError', 0) + 1
         raise SequenceError()
 
 
+def Word_Er(p):
+    if p in top_words:
+        exceptions['WordError'] = exceptions.get('WordError', 0) + 1
+        raise WordError()
+
+
 def check_password(password):
-    for func in (Length, Letter, Digit, Sequence):
+    for func in (Length, Letter, Digit, Sequence, Word_Er):
         try:
             func(password)
-        except PasswordError as pe:
-            print(pe.__class__.__name__)
-            return False
-    return True
+        except PasswordError:
+            pass
 
 
-def process():
-    while True:
-        try:
-            passwd = input()
-            if passwd == 'Ctrl+Break':
-                raise KeyboardInterrupt
-            if check_password(passwd):
-                print("ok")
-                break
-        except KeyboardInterrupt:
-            print("Bye-Bye")
-            break
+for passwd in top_passwd:
+    check_password(passwd)
 
-
-process()
-
-# check_password(passwd)
+for k in sorted(exceptions.keys()):
+    print(k, '-', exceptions[k])

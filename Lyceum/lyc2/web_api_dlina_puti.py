@@ -13,6 +13,24 @@ dist = 0
 for i in range(len(points) - 1):
     dist += distance.lonlat_distance(map(float, points[i].split(',')), map(float, points[i + 1].split(',')))
 
+d = dist / 2
+i = 0
+while d > 0:
+    d = d - distance.lonlat_distance(map(float, points[i].split(',')), map(float, points[i + 1].split(',')))
+    i += 1
+
+print(d, i, points[i].split(','))
+len = distance.lonlat_distance(map(float, points[i].split(',')), map(float, points[i - 1].split(',')))
+d = abs(d)
+Ax = float(points[i].split(',')[0])
+Ay = float(points[i].split(',')[1])
+Bx = float(points[i - 1].split(',')[0])
+By = float(points[i - 1].split(',')[1])
+
+Cx = Ax + (Bx - Ax) * (d / len)
+Cy = Ay + (By - Ay) * (d / len)
+print(Cx, Cy)
+
 print(int(dist))
 
 response = None
@@ -20,6 +38,7 @@ map_request = "https://static-maps.yandex.ru/1.x/?l=map&ll=30.089428,59.918785&p
 for p in points:
     map_request += f'{p},'
 map_request = map_request[:-1]
+map_request += f'&pt={Cx},{Cy},comma'
 print(map_request)
 response = requests.get(map_request)
 
@@ -34,6 +53,7 @@ map_file = "map.png"
 with open(map_file, "wb") as file:
     file.write(response.content)
 
+
 def draw_text(surf, text):
     font_name = pygame.font.match_font('Arial')
     font = pygame.font.Font(font_name, 32)
@@ -41,6 +61,7 @@ def draw_text(surf, text):
     text_rect = text_surface.get_rect()
     text_rect.midtop = (300, 10)
     surf.blit(text_surface, text_rect)
+
 
 # Инициализируем pygame
 pygame.init()

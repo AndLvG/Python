@@ -1,9 +1,9 @@
 import re
 
-ENG = "qwertyuiopasdfghjklzxcvbnm"
-RUS = "йцукенгшщзхъфывапролджэячсмитьбю"
+ENG = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
+RUS = ["йцукенгшщзхъ", "фывапролджэ", "ячсмитьбю", "фывапролджэё"]
 
-passwd = input('Введите пароль: ')
+passwd = input()
 
 
 def check_len(p):
@@ -19,14 +19,19 @@ def check_number(p):
 
 
 def check_klawa(p):
-    for i in range(0, len(p) - 3):
-        if p[i:i + 2].lower() in ENG or p[i:i + 2].lower() in RUS:
-            return False
+    for i in range(0, len(p) - 2):
+        for el in ENG:
+            for y in range(len(el) - 2):
+                if el[y] + el[y + 1] + el[y + 2] in p.lower():
+                    return False
+        for el in RUS:
+            for y in range(len(el) - 2):
+                if el[y] + el[y + 1] + el[y + 2] in p.lower():
+                    return False
     return True
 
-           
-if all((check_len(passwd), check_letters(passwd), check_number(passwd), check_klawa(passwd))):
+
+if check_len(passwd) and check_letters(passwd) and check_number(passwd) and check_klawa(passwd):
     print('ok')
 else:
     print('error')
-
