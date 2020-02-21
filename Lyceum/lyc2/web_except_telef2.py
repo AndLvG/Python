@@ -1,89 +1,75 @@
-import re
-
-ENG = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
-RUS = ["йцукенгшщзхъ", "фывапролджэ", "ячсмитьбю", "фывапролджэё"]
+tel = input().replace(" ", "").replace("\t", "")
 
 
-def check_len(p):
-    return len(p) > 8
+def tel_check_7_8(n):
+    return n[:2] == "+7" or n[0] == "8"
 
 
-def check_letters(p):
-    return re.search('[A-ZА-Я]', p) and re.search('[a-zа-я]', p)
+def tel_check_skobki(n):
+    i = 0
+    s = 0
+    for el in n:
+        if el == "(":
+            i += 1
+        elif el == ")":
+            i -= 1
+            if i == 0:
+                s += 1
+        if i < 0 or s > 1:
+            break
+    return i == 0 and s in (0, 1)
 
 
-def check_number(p):
-    return re.search('[0-9]', p)
+def tel_check_znak(n):
+    return "--" not in n and n[0] != "-" and n[-1] != "-"
 
 
-def check_klawa(p):
-    for i in range(0, len(p) - 2):
-        for el in ENG:
-            for y in range(len(el) - 2):
-                if el[y] + el[y + 1] + el[y + 2] in p.lower():
-                    return False
-        for el in RUS:
-            for y in range(len(el) - 2):
-                if el[y] + el[y + 1] + el[y + 2] in p.lower():
-                    return False
-    return True
+def tel_format(n):
+    # n = re.sub("\D", "", n)
+    n = ''.join(i for i in n if i.isdigit())
+    if n[0] == "8":
+        n = "7" + n[1:]
+    return "+" + n
 
 
-class PasswordError(Exception):
-    pass
+def err_tel_check_7_8(n):
+    if n[:2] != "+7" and n[0] != "8":
+        raise Exception
 
 
-class LengthError(PasswordError):
-    pass  # если длина пароля меньше 9 символов.
+def err_tel_check_skobki(n):
+    i = 0
+    s = 0
+    for el in n:
+        if el == "(":
+            i += 1
+        elif el == ")":
+            i -= 1
+            if i == 0:
+                s += 1
+        if i < 0 or s > 1:
+            break
+    if i != 0 or s not in (0, 1):
+        raise Exception
 
 
-class LetterError(PasswordError):
-    pass  # если в пароле все символы одного регистра.
+def err_tel_check_znak(n):
+    if "--" in n or n[0] == "-" or n[-1] == "-":
+        raise Exception
 
 
-class DigitError(PasswordError):
-    pass  # если в пароле нет ни одной цифры.
+def err_tel_len(n):
+    if len(tel_format(tel)) != 12:
+        raise Exception
 
 
-class SequenceError(PasswordError):
-    # если пароль нарушает требование к последовательности из подряд идущих трех символов
-    # (указано в предыдущей задаче).
-    pass
-
-
-def Length(p):
-    if len(p) < 9:
-        raise LengthError()
-
-
-def Letter(p):
-    if p == p.lower() or p == p.upper():
-        raise LetterError()
-
-
-def Digit(p):
-    if not check_number(p):
-        raise DigitError()
-
-
-def Sequence(p):
-    if not check_klawa(p):
-        raise SequenceError()
-
-
-def check_password(password):
-    for func in (Length, Letter, Digit, Sequence):
+def check_telef(telef):
+    for func in (err_tel_check_7_8, err_tel_check_skobki, err_tel_check_znak, err_tel_len):
         try:
-            func(password)
-        except PasswordError as pe:
-            print(pe.__class__.__name__)
-            return ''
-    print('ok')
-    return ''
+            func(telef)
+        except Exception as e:
+            return 'error'
+    return tel_format(tel)
 
-# if all((check_len(passwd), check_letters(passwd), check_number(passwd), check_klawa(passwd))):
-#     print('ok')
-# else:
-#     print('error')
 
-# check_password('U3UшHЪnDЧ5yш.yмЯpH')
+print(check_telef(tel))

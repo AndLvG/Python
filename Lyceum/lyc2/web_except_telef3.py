@@ -34,7 +34,7 @@ def tel_format(n):
 
 def err_tel_check_7_8(n):
     if n[:2] != "+7" and n[0] != "8":
-        raise Exception
+        raise NameError
 
 
 def err_tel_check_skobki(n):
@@ -47,23 +47,30 @@ def err_tel_check_skobki(n):
             i -= 1
             if i == 0:
                 s += 1
-        if i < 0 or s > 1:
+        if i < 0 or i > 1 or s > 1:
             break
     if i != 0 or s not in (0, 1):
-        raise Exception
+        raise NameError
 
 
 def err_tel_check_znak(n):
     if "--" in n or n[0] == "-" or n[-1] == "-":
-        raise Exception
+        raise NameError
+
+
+def err_tel_len(n):
+    if len(tel_format(tel)) != 12:
+        raise IndexError
 
 
 def check_telef(telef):
-    for func in (err_tel_check_7_8, err_tel_check_skobki, err_tel_check_znak):
+    for func in (err_tel_check_7_8, err_tel_check_skobki, err_tel_check_znak, err_tel_len):
         try:
             func(telef)
-        except Exception as e:
-            return 'error'
+        except NameError:
+            return 'неверный формат'
+        except IndexError:
+            return 'неверное количество цифр'
     return tel_format(tel)
 
 

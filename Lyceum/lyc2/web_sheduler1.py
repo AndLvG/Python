@@ -15,7 +15,7 @@ def kuku():
     print("Ку")
 
 
-schedule.every().hour.do(kuku())
+schedule.every(5).seconds.do(kuku)
 while True:
     schedule.run_pending()
     time.sleep(1)

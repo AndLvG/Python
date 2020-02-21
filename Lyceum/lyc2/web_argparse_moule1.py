@@ -2,31 +2,19 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--barbie', default=50, type=int,
-                    help='отношение к куклам от 0 до 100')
-parser.add_argument('--cars', default=50, type=int,
-                    help='отношение к машинам от 0 до 100')
-parser.add_argument('--movie', default='other', type=str,
-                    choices=('melodrama', 'football', 'other'),
-                    help='любимая ТВ программа')
-
+parser.add_argument('--file', type=str)
 args = parser.parse_args()
+filename = args.file
 
-barbie = args.barbie
-cars = args.cars
-mov = args.movie
 
-if mov == 'melodrama':
-    movie = 0
-elif mov == 'football':
-    movie = 100
-elif mov == 'other':
-    movie = 50
+def count_lines(file_path):
+    try:
+        with open(file_path, 'rt') as file:
+            data = file.read().split('\n')
+            print(len(data))
+    except Exception:
+        print(0)
 
-boy = int((100 - barbie + cars + movie) / 3)
-girl = 100 - boy
 
-print(f'boy: {boy}')
-print(f'girl: {girl}')
-
-# python web_argparse2.py --cars 80 --barbie 0 --movie football
+if __name__ == "__main__":
+    count_lines(filename)

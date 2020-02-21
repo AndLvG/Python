@@ -1,16 +1,32 @@
 import argparse
-import sys
 
-parser = argparse.ArgumentParser(
-    description="convert integers to decimal system")
-parser.add_argument('integers', metavar='integers', nargs='+',
-                    type=str, help='integers to be converted')
-parser.add_argument('--base', default=2, type=int,
-                    help='default numeric system')
-parser.add_argument('--log', default=sys.stdout, type=argparse.FileType('w'),
-                    help='the file where converted data should be written')
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--barbie', default=50, type=int,
+                    help='отношение к куклам от 0 до 100')
+parser.add_argument('--cars', default=50, type=int,
+                    help='отношение к машинам от 0 до 100')
+parser.add_argument('--movie', default='other', type=str,
+                    choices=('melodrama', 'football', 'other'),
+                    help='любимая ТВ программа')
 
 args = parser.parse_args()
-s = " ".join(map(lambda x: str(int(x, args.base)), args.integers))
-args.log.write(s + '\n')
-args.log.close()
+
+barbie = args.barbie
+cars = args.cars
+mov = args.movie
+
+if mov == 'melodrama':
+    movie = 0
+elif mov == 'football':
+    movie = 100
+elif mov == 'other':
+    movie = 50
+
+boy = int((100 - barbie + cars + movie) / 3)
+girl = 100 - boy
+
+print(f'boy: {boy}')
+print(f'girl: {girl}')
+
+# python web_argparse2.py --cars 80 --barbie 0 --movie football

@@ -12,9 +12,15 @@ def count_lines(file_path):
         with open(file_path, 'rt') as file:
             data = file.read().split('\n')
             print(len(data))
-    except Exception:
-        print(0)
+    except Exception as pe:
+        print('0')
 
 
 if __name__ == "__main__":
     count_lines(filename)
+
+# python get_lines.py --file text1.txt"
+
+# from get_lines import count_lines
+#
+# print(count_lines('text1.txt'))

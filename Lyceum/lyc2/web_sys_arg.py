@@ -1,15 +1,24 @@
 import sys
 
 try:
-    if len(sys.argv) == 3:
-        num1 = sys.argv[1]
-        num2 = sys.argv[2]
-        num1, num2 = int(num1), int(num2)
-        if round(num1) == num1 and round(num2) == num2:
-            print(num1 + num2)
-        else:
-            print(0)
-    else:
-        print(0)
-except ValueError:
-    print(0)
+    filename = sys.argv[-1]
+    ar = []
+    for arg in sys.argv[1:-1]:
+        ar.append(arg)
+
+    with open(filename, 'rt') as file:
+        data = file.read().split('\n')
+        if '--sort' in ar:
+            data = sorted(data)
+
+        for i, el in enumerate(data):
+            if '--num' in ar:
+                print(i, el)
+            else:
+                print(el)
+
+        if '--count' in ar:
+            print(f'rows count: {len(data)}')
+
+except Exception:
+    print('ERROR')

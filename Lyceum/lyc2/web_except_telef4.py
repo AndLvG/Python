@@ -1,6 +1,6 @@
 from itertools import chain
 
-OPERATOR = chain(range(910, 919), range(980, 989), range(920, 939), range(902, 906), range(960, 969))
+OPERATOR = list(map(str, chain(range(910, 919), range(980, 989), range(920, 939), range(902, 906), range(960, 969))))
 
 tel = input().replace(" ", "").replace("\t", "")
 
@@ -63,12 +63,12 @@ def err_tel_check_znak(n):
 
 
 def err_tel_len(n):
-    if len(tel_format(tel)) != 12:
+    if len(tel_format(n)) != 12:
         raise IndexError
 
 
 def err_tel_operator(n):
-    tel = n[2:5]
+    tel = tel_format(n)[2:5]
     if tel not in OPERATOR:
         raise IndentationError
 

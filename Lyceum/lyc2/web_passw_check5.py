@@ -85,13 +85,14 @@ def Sequence(p):
 
 
 def Word_Er(p):
-    if p in top_words:
-        exceptions['WordError'] = exceptions.get('WordError', 0) + 1
-        raise WordError()
+    for pp in top_words:
+        if pp in p:
+            exceptions['WordError'] = exceptions.get('WordError', 0) + 1
+            raise WordError()
 
 
 def check_password(password):
-    for func in (Length, Letter, Digit, Sequence, Word_Er):
+    for func in (Word_Er, Length, Letter, Digit, Sequence):
         try:
             func(password)
         except PasswordError:

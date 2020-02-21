@@ -1,6 +1,12 @@
 from itertools import chain
 
-OPERATOR = chain(range(910, 919), range(980, 989), range(920, 939), range(902, 906), range(960, 969))
+OPERATOR = \
+    list(map(str,
+             chain(range(910, 920), range(980, 990), range(920, 940),
+                   range(902, 907), range(960, 970))))
+# print(OPERATOR)
+# STRANI = ["+7", "+359", "+55", "+1", "+5"]
+# print(STRANI)
 
 tel = input().replace(" ", "").replace("\t", "")
 
@@ -37,7 +43,7 @@ def tel_format(n):
 
 
 def err_tel_check_7_8(n):
-    if n[:2] != "+7" and n[0] != "8":
+    if n[:2] != "+7" and n[0] != "8" and n[0] != "+":
         raise NameError
 
 
@@ -63,27 +69,46 @@ def err_tel_check_znak(n):
 
 
 def err_tel_len(n):
-    if len(tel_format(tel)) != 12:
+    if len(tel_format(n)) != 12:
         raise IndexError
 
 
 def err_tel_operator(n):
-    tel = n[2:5]
+    if tel_format(n)[0:2] != "+7":
+        return
+    tel = tel_format(n)[2:5]
     if tel not in OPERATOR:
         raise IndentationError
 
 
+def err_tel_strana(n):
+    tel = tel_format(n)
+    # print(tel)
+    # if tel not in STRANI:
+    if tel[:2] != "+7" and tel[:4] != "+359" and tel[:3] != "+55" and tel[:2] != "+1":
+        raise ValueError
+
+
 def check_telef(telef):
-    for func in (err_tel_check_7_8, err_tel_check_skobki, err_tel_check_znak, err_tel_len, err_tel_operator):
+    for func in (
+            err_tel_check_7_8, err_tel_check_skobki, err_tel_check_znak, err_tel_len,
+            err_tel_operator, err_tel_strana):
         try:
             func(telef)
         except NameError:
+            # print(func.__name__)
             return 'неверный формат'
         except IndexError:
             return 'неверное количество цифр'
         except IndentationError:
             return 'не определяется оператор сотовой связи'
+        except ValueError:
+            return 'не определяется код страны'
     return tel_format(tel)
 
 
 print(check_telef(tel))
+
+# +39166195078
+# не определяется код страны
+# +35978946873

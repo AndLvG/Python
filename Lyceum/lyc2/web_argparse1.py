@@ -1,15 +1,11 @@
 import argparse
-import sys
 
-c = 1
-arg = []
 parser = argparse.ArgumentParser()
-if len(sys.argv[1:]) > 1:
-    for el in sys.argv[1:]:
-        parser.add_argument(f"arg{c}")
-        arg.append(f"arg{c}")
-    args = parser.parse_args()
-    for el in arg:
-        print(args.el)
+parser.add_argument('arg', nargs='*')
+args = parser.parse_args()
+
+if len(args.arg) > 0:
+    for i in args.arg:
+        print(i)
 else:
-    print("no args")
+    print('no args')
