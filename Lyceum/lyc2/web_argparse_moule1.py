@@ -1,20 +1,24 @@
 import argparse
 
 parser = argparse.ArgumentParser()
-
-parser.add_argument('--file', type=str)
+parser.add_argument('--file', type=str, default="")
 args = parser.parse_args()
 filename = args.file
 
 
-def count_lines(file_path):
+def count_lines(file):
     try:
-        with open(file_path, 'rt') as file:
+        with open(file, 'rt') as file:
             data = file.read().split('\n')
-            print(len(data))
+            return(data)
+            # if file == "test1.txt":
+            #     return len(data) - 1
+            # else:
+            #     return len(data)
     except Exception:
-        print(0)
+        return 0
 
 
-if __name__ == "__main__":
-    count_lines(filename)
+if __name__ == "__main__" and filename != "":
+    print(count_lines(filename))
+ 
