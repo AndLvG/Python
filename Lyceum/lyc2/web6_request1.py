@@ -1,13 +1,21 @@
 import requests
-api_server = "http://static-maps.yandex.ru/1.x/"
 
-lon = "37.530887"
-lat = "55.703118"
-delta = "0.002"
+api_server = input() + ':' + input()
+a = input()
+b = input()
 
-params = {
-    "ll": ",".join([lon, lat]),
-    "spn": ",".join([delta, delta]),
-    "l": "map"
-}
+print(api_server)
+
+params = {"a": a, "b": b}
 response = requests.get(api_server, params=params)
+
+print(response.url)
+
+json_response = response.json()
+
+check = json_response["check"]
+result = json_response["result"]
+
+print(" ".join(result.sort()))
+print(check)
+
