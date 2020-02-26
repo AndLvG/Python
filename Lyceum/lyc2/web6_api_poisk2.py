@@ -10,6 +10,7 @@ from PIL import Image
 # Тогда запрос к геокодеру формируется следующим образом:
 toponym_to_find = 'Москва, ул. Ак. Королева, 12'  # " ".join(sys.argv[1:])
 
+
 geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
 
 geocoder_params = {
@@ -19,6 +20,7 @@ geocoder_params = {
 
 response = requests.get(geocoder_api_server, params=geocoder_params)
 
+print(response.url)
 if not response:
     # обработка ошибочной ситуации
     pass
@@ -33,7 +35,7 @@ toponym_coodrinates = toponym["Point"]["pos"]
 # Долгота и широта:
 toponym_longitude, toponym_lattitude = toponym_coodrinates.split(" ")
 
-delta = "0.005"
+delta = "0.05"
 
 # Собираем параметры для запроса к StaticMapsAPI:
 map_params = {
