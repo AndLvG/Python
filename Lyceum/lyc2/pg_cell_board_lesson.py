@@ -27,8 +27,8 @@ class Board:
 
     def get_click(self, mouse_pos):
         cell = self.get_cell(mouse_pos)
-        # self.on_click(cell)
-        self.three_colors(cell)
+        self.on_click(cell)
+        # self.three_colors(cell)
 
     def get_cell(self, mouse_pos):
         x = (mouse_pos[0] - self.left) // self.cell_size
