@@ -8,6 +8,7 @@ pygame.init()
 
 screen = pygame.display.set_mode((300, 400))
 screen.fill((0, 0, 0))
+pygame.display.set_caption("Игра Недореверси")
 
 
 class Board:
