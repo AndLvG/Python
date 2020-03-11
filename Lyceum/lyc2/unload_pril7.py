@@ -39,9 +39,12 @@ def Check_Flag():
     flag = df.iloc[0]['modified_flag']
     return flag
 
+def Write_Log(text):
+    print(f'{datetime.datetime.now().strftime("%d-%m-%Y %H-%M")} -> {text}')
 
 def Make_Pril7():
     if Check_Flag():  # Есть изменения - нужно обновлять
+        Write_Log('Есть признак изменений. Начинаем выгрузку')
         try:  # Берём селект для выгрузки из таблицы
             conn = pypyodbc.connect(CONN_STR)
             sql_text = pd.read_sql_query(PRIL7_SQL, conn).iloc[0]['q_select']
@@ -57,6 +60,8 @@ def Make_Pril7():
                 os.remove(f)
 
             #  Пишем в Excel
+            Write_Log('Пишем в Excel')
+            Write_Log(f'{WORK_DIR}\Приложение 7 от {datetime.datetime.now().strftime("%d-%m-%Y %H-%M")}.xlsx')
             with pd.ExcelWriter(
                     f'{WORK_DIR}\Приложение 7 от {datetime.datetime.now().strftime("%d-%m-%Y %H-%M")}.xlsx') as writer:
                 df.to_excel(writer, sheet_name='Приложение 7', index=False)
@@ -81,4 +86,4 @@ while True:
     schedule.run_pending()
     time.sleep(1)
 
-build_exe myscript.py
+# pyinstaller -F --exclude-module PyQt5 unload_pril7.py
