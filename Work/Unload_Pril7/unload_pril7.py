@@ -77,6 +77,7 @@ def Make_Pril7():
                 worksheet = writer.sheets['Приложение 7']
                 Excel_Column_Autofit(df, worksheet, 16)
                 worksheet.set_column('B:B', 115, None)
+                worksheet.freeze_panes(1, 0)
 
                 writer.save()
             # Меняем признак необходимсоти выгрузки Flag = 0
@@ -101,3 +102,5 @@ while True:
 
 # pyinstaller -F --exclude-module PyQt5 unload_pril7.py
 # auto-py-to-exe
+# cxfreeze unload_pril7.py --target-dir dist
+# pip freeze > requirements.txt
