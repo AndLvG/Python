@@ -1,4 +1,4 @@
-import pypyodbc
+import pyodbc
 import pandas as pd
 import datetime
 import glob, os
@@ -37,7 +37,7 @@ def Excel_Column_Autofit(df, worksheet, max_length=None):
 #  Проверка необходимости выгрузки Приложения 7
 def Check_Flag():
     try:
-        conn = pypyodbc.connect(CONN_STR)
+        conn = pyodbc.connect(CONN_STR)
         df = pd.read_sql_query("""select Modified_flag 
                                    from ModifiedTables 
                                    where Table_name = '[IESDB].[IES].[R_NSI_USL_V001]'""", conn)
@@ -45,7 +45,7 @@ def Check_Flag():
         Write_Log('Ошибка подключения к DBX\MSSQLSERVER2012')
         print(pe)
         raise
-    flag = df.iloc[0]['modified_flag']
+    flag = df.iloc[0]['Modified_flag']
     return flag
 
 
@@ -53,7 +53,7 @@ def Make_Pril7():
     if Check_Flag():  # Есть изменения - нужно обновлять
         Write_Log('Есть признак изменений. Начинаем выгрузку')
         try:  # Берём селект для выгрузки из таблицы
-            conn = pypyodbc.connect(CONN_STR)
+            conn = pyodbc.connect(CONN_STR)
             sql_text = pd.read_sql_query(PRIL7_SQL, conn).iloc[0]['q_select']
             df = pd.read_sql(sql_text, conn)
             df.columns = map(lambda x: str(x).upper(), df.columns)
@@ -104,3 +104,6 @@ while True:
 # auto-py-to-exe
 # cxfreeze unload_pril7.py --target-dir dist
 # pip freeze > requirements.txt
+# pip download -r requirements.txt --dest dist --only-binary :all:
+# python -m pip install -U --force-reinstall pip
+# pip install -r requirements.txt --no-index -f dist

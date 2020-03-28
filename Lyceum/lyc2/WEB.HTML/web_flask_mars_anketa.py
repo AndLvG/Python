@@ -127,6 +127,7 @@ def form_sample():
         print(request.form.get('pr8'))
         print(request.form.get('file'))
         f = request.files['file']
+
         print(f.read())
         print(request.form.get('about'))
         print(request.form.get('accept'))
