@@ -18,7 +18,6 @@ script = '''<script type="text/javascript">
     });
 </script>'''
 
-@csrf.exempt
 @app.route('/')
 def index():
     return "Миссия Колонизация Марса"
@@ -48,7 +47,7 @@ def form_sample():
                                             <div class="form-group">
                                                 <label for="photo">Приложите фотографию</label></br>
                                                 <input type="file" class="form-control-file" id="profile-img" name="file">
-        <img src="" id="profile-img-tag" width="200px" />
+        <img src="" id="profile-img-tag" />
         {script}
                                             </div>
                                             <button type="submit" class="btn btn-primary">Отправить</button>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="titl">
+    Аварийный доступ
+</div>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <!-- Астронавт -->
+    <p>
+        {{ form.id_astronavt.label }}<br>
+        {{ form.id_astronavt(class="form-control") }}<br>
+        {% for error in form.id_astronavt.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.pass_astronavt.label }}<br>
+        {{ form.pass_astronavt(class="form-control", type="password") }}<br>
+        {% for error in form.pass_astronavt.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+         {% endfor %}
+    </p>
+    <!-- Капитан -->
+    <p>
+        {{ form.id_capitan.label }}<br>
+        {{ form.id_capitan(class="form-control") }}<br>
+        {% for error in form.id_capitan.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.pass_capitan.label }}<br>
+        {{ form.pass_capitan(class="form-control", type="password") }}<br>
+        {% for error in form.pass_capitan.errors %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+         {% endfor %}
+    </p>
+
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}

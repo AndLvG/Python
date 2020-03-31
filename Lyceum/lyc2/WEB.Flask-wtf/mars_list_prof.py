@@ -1,5 +1,6 @@
 from flask import Flask, url_for, render_template
 
+
 app = Flask(__name__)
 
 
@@ -7,9 +8,10 @@ app = Flask(__name__)
 def index():
     return "Миссия Колонизация Марса"
 
-@app.route('/training/<prof>')
-def index1(prof):
-    return render_template('index.html', prof=prof)
+
+@app.route('/list_prof/<list>')
+def index1(list):
+    return render_template('list_prof.html', list=list)
 
 
 if __name__ == '__main__':

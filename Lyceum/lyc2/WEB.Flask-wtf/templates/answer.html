@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+			<div>Фамилия: {{ inf["surname"] }}</div>
+			<div>Имя: {{ inf["name"] }}</div>
+			<div>Образование: {{ inf["education"] }}</div>
+			<div>Профессия: {{ inf["profession"] }}</div>
+			<div>Пол: {{ inf["sex"] }}</div>
+			<div>Мотивация: {{ inf["motivation"] }}</div>
+			<div>Готовы остатся на марсе? {{ inf["ready"] }}</div>
+
+
+{% endblock %}
