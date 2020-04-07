@@ -1,8 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from data import db_session
-from data import users
-from data import jobs
 import datetime
+from data.__all_models import *
+
 
 colonists = [{"surname": "Scott",
               "name": "Ridley",
@@ -42,7 +42,7 @@ DB = "db/mars_explorer.db"
 def main():
     db_session.global_init(DB)
     # add_colonist()
-    add_job()
+    # add_job()
     app.run()
 
 
