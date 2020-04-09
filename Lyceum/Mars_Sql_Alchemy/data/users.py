@@ -38,4 +38,4 @@ class User(SqlAlchemyBase, UserMixin):
 
 class Anonymous(AnonymousUserMixin):
   def __init__(self):
-    self.username = 'Гость'
+    self.name = 'Гость'

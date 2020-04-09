@@ -12,7 +12,7 @@ DB = "db/mars_explorer.db"
 def index():
     session = db_session.create_session()
     j = session.query(jobs.Jobs).all()
-    return render_template("index.html", jobs=j, title="Журнал работ")
+    return render_template("jobs_table.html", jobs=j, title="Журнал работ")
 
 
 def main():
