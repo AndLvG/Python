@@ -8,7 +8,7 @@ from flask_login import LoginManager, login_user, current_user, logout_user, log
 from werkzeug.urls import url_parse
 from data.register import RegisterForm
 from data.add_job import AddJobForm
-import jobs_api, users_api
+import jobs_api
 from flask_restful import reqparse, abort, Api, Resource
 import jobs_resources, users_resources
 
