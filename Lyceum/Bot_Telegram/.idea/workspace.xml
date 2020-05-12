@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73719472-b464-485a-9672-2919444e7653" name="Default Changelist" comment="" />
+    <list default="true" id="73719472-b464-485a-9672-2919444e7653" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tg_bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tg_buttons_bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tg_dice_bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tg_echo_bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tg_echo_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Mars_Sql_Alchemy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Mars_Sql_Alchemy/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
