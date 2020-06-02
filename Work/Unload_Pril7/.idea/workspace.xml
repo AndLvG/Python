@@ -2,17 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35edca29-00dd-4e5d-b05a-0ae048a6eb7d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/Mars_Sql_Alchemy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Mars_Sql_Alchemy/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/1/mars_galery.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/1/mars_galery.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/1/static/img/galery/m1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/1/static/img/galery/m2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/1/static/img/galery/m3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/1/templates/galery.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/Sql_Alchemy/data/__all_models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/Sql_Alchemy/data/db_session.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/Sql_Alchemy/data/users.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/lyc2/Sql_Alchemy/main.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/async_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_commands.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_gramotey.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_kotik.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_pogoda.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_timer_bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/test_pogoda.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/test_smile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog_excursion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog_literator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog_test_vopros.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_geocoder.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_translator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lyceum/lyc2/whatsApp_auto_send.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_dice_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_dice_bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/save_xml_from_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/save_xml_from_server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/unload_pril7.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="86" column="25" lean-forward="true" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+            <state relative-caret-position="1420">
+              <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#506#699#0" />
@@ -36,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/save_xml_from_server.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -90,7 +99,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Lyceum/Mars_Sql_Alchemy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Lyceum/Bot_Telegram" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -220,7 +229,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1050" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -267,8 +276,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/unload_pril7.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="86" column="25" lean-forward="true" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
+        <state relative-caret-position="1420">
+          <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
             <element signature="e#506#699#0" />
@@ -280,7 +289,7 @@
     <entry file="file://$PROJECT_DIR$/save_xml_from_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

@@ -1,43 +1,29 @@
 import discord
 import requests
+from discord.ext import commands
+import random
 
 TOKEN = "NzA5NzAzNTgwNzIxODcyODk2.XrpyDA.WUjTDTnD8zoxAKabhFQ9wJQHvEg"
-
-CLIENT = discord.Client()
-
-
-async def reduser(message: discord.Message):
-    cat = "https://api.thecatapi.com/v1/images/search"
-    dog = "https://dog.ceo/api/breeds/image/random"
-    text = message.content.lower()
-    if "кот" in text or "кошк" in text:
-        response = requests.get(cat)
-        await message.channel.send(response.json()[0].get('url'))
-    elif "пёс" in text or "собак" in text:
-        response = requests.get(dog)
-        await message.channel.send(response.json().get("message"))
+dashes = ['\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685']
 
 
-@CLIENT.event
-async def on_ready():
-    print(f'{CLIENT.user} подключен к Discord!')
-    for guild in CLIENT.guilds:
-        print(
-            f'{CLIENT.user} подключились к чату:\n'
-            f'{guild.name}(id: {guild.id})'
-        )
+class RandomThings(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+
+    @commands.command(name='roll_dice')
+    async def roll_dice(self, ctx, count):
+        res = [random.choice(dashes) for _ in range(int(count))]
+        print(res)
+        await ctx.send(" ".join(res))
+
+    @commands.command(name='randint')
+    async def my_randint(self, ctx, min_int, max_int):
+        num = random.randint(int(min_int), int(max_int))
+        await ctx.send(num)
 
 
-@CLIENT.event
-async def on_message(message: discord.Message):
-    if message.author.bot:
-        return
-    await reduser(message)
+bot = commands.Bot(command_prefix='/')
 
-
-def main():
-    CLIENT.run(TOKEN)
-
-
-if __name__ == "__main__":
-    main()
+bot.add_cog(RandomThings(bot))
+bot.run(TOKEN)

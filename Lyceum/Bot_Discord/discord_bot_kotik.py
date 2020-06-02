@@ -1,19 +1,43 @@
-import asyncio
+import discord
+import requests
+
+TOKEN = "NzA5NzAzNTgwNzIxODcyODk2.XrpyDA.WUjTDTnD8zoxAKabhFQ9wJQHvEg"
+
+CLIENT = discord.Client()
 
 
-async def task(name):
-    print(f'{name} задача началась')
-    await asyncio.sleep(5)
-    print(f'{name} задача завершилась')
+async def reduser(message: discord.Message):
+    cat = "https://api.thecatapi.com/v1/images/search"
+    dog = "https://dog.ceo/api/breeds/image/random"
+    text = message.content.lower()
+    if "кот" in text or "кошк" in text:
+        response = requests.get(cat)
+        await message.channel.send(response.json()[0].get('url'))
+    elif "пёс" in text or "собак" in text:
+        response = requests.get(dog)
+        await message.channel.send(response.json().get("message"))
 
 
-async def main():
-    await asyncio.gather(
-        task('Первая'),
-        task('Вторая'),
-    )
+@CLIENT.event
+async def on_ready():
+    print(f'{CLIENT.user} подключен к Discord!')
+    for guild in CLIENT.guilds:
+        print(
+            f'{CLIENT.user} подключились к чату:\n'
+            f'{guild.name}(id: {guild.id})'
+        )
 
 
-if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+@CLIENT.event
+async def on_message(message: discord.Message):
+    if message.author.bot:
+        return
+    await reduser(message)
+
+
+def main():
+    CLIENT.run(TOKEN)
+
+
+if __name__ == "__main__":
+    main()

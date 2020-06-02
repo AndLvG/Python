@@ -1,29 +1,45 @@
 import discord
 import requests
-from discord.ext import commands
-import random
+import time
 
-TOKEN = "NzA5NzAzNTgwNzIxODcyODk2.XrpyDA.WUjTDTnD8zoxAKabhFQ9wJQHvEg"
-dashes = ['\u2680', '\u2681', '\u2682', '\u2683', '\u2684', '\u2685']
+TOKEN = "NzA4MzM5MTM0NDA1NTQxOTQ5.XrkNmg.ZuumfyF98TmrxJVySKVycP0Sg5M"
 
-
-class RandomThings(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
-
-    @commands.command(name='roll_dice')
-    async def roll_dice(self, ctx, count):
-        res = [random.choice(dashes) for _ in range(int(count))]
-        print(res)
-        await ctx.send(" ".join(res))
-
-    @commands.command(name='randint')
-    async def my_randint(self, ctx, min_int, max_int):
-        num = random.randint(int(min_int), int(max_int))
-        await ctx.send(num)
+CLIENT = discord.Client()
 
 
-bot = commands.Bot(command_prefix='/')
+@CLIENT.event
+async def reduser(message: discord.Message):
+    text = message.content
+    if "set_timer" in text:
+        t = text.split()
+        h = int(t[2])
+        m = int(t[4])
+        s = (h * 360) + (m*60)
+        await message.channel.send(f"у тебя {h} часов {m} минут")
+        time.sleep(s)
+        await message.channel.send("время вышло")
 
-bot.add_cog(RandomThings(bot))
-bot.run(TOKEN)
+
+@CLIENT.event
+async def on_ready():
+    print(f'{CLIENT.user} подключен к Discord!')
+    for guild in CLIENT.guilds:
+        print(
+            f'{CLIENT.user} подключились к чату:\n'
+            f'{guild.name}(id: {guild.id})'
+        )
+
+
+@CLIENT.event
+async def on_message(message: discord.Message):
+    if message.author.bot:
+        return
+    await reduser(message)
+
+
+def main():
+    CLIENT.run(TOKEN)
+
+
+if __name__ == "__main__":
+    main()
