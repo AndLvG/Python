@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 align="center">Форма поиска</h2>
+<form action="" method="post" class="form-horizontal">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <b>{{ form.fam.label }}</b> {{ form.fam(class="form-control") }}
+                {% for error in form.fam.errors %}
+                <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+            </div>
+            <div class="col-sm-2">
+                <b>{{ form.im.label }}</b> {{ form.im(class="form-control") }}
+                {% for error in form.im.errors %}
+                <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+            </div>
+            <div class="col-sm-2">
+                <b>{{ form.ot.label }}</b> {{ form.ot(class="form-control") }}
+                {% for error in form.ot.errors %}
+                <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+            </div>
+            <div class="col-sm-2">
+                <b>{{ form.dr.label }}</b> {{ form.dr(class="form-control", type="date") }}
+                {% for error in form.dr.errors %}
+                <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+            </div>
+            <div class="col-sm-2">
+                <b>{{ form.god_dr.label }}</b> {{ form.god_dr(class="form-control") }}
+                {% for error in form.god_dr.errors %}
+                <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <b>{{ form.date_begin.label }}</b> {{ form.date_begin(class="form-control", type="date") }}
+                    {% for error in form.date_begin.errors %}
+                    <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+                </div>
+                <div class="col-sm-6">
+                    <b>{{ form.date_end.label }}</b> {{ form.date_end(class="form-control", type="date") }}
+                    {% for error in form.date_end.errors %}
+                    <p class="alert alert-danger" role="alert"> {{ error }} </p> {% endfor %}
+                </div>
+                <div style="position: relative;">
+                    <div style="display: inline-block; vertical-align: bottom; position: absolute; left: 0; bottom: 0;">
+                        {{ form.submit(type="submit", class="btn btn-primary") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{message}}
+
+    {% if show %}
+
+    <span><strong>{{ show }}</strong></span>
+    {% endif %}
+
+    {% if results %}
+    <a class="btn btn-info btn-xs" href="{{ url_for('downloadfile') }}">В Excel</a>
+    <a class="btn btn-info btn-xs" href="{{ url_for('zapros_2_FSS') }}">Шаблон ФСС</a>
+    <div class=page>
+        {{ results|safe }}
+    </div>
+    {% endif %}
+
+</form>
+{% endblock %}

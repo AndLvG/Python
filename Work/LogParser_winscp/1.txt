@@ -1,0 +1,55 @@
+: Проверяем наличие ошибок и если были отправляем письмо
+IF %errorload%==0 (goto nomail)
+@echo    -------------------------------------------------------------------------¬>>%log_p%
+@echo    ¦ При выполнении загрузок возникли ошибки, письмо с ошибками отправленно ¦>>%log_p%
+@echo    L------------------------------------------------------------------------->>%log_p%
+@echo.>>%log_p%
+@echo Завершение работы по загрузке данных на сайт %time% %date% >>%tomail%
+set subjmail="Внимание! Возникли ошибки при загрузке данных на сайт"
+rem   "c:\Program files\winscp\tomail.vbs" %subjmail% %tomail%
+:: Конец кода отправки письма при наличии ошибок
+
+Function StrConv(Text,SourceCharset,DestCharset)
+  Set Stream=CreateObject("ADODB.Stream")
+  Stream.Type=2
+  Stream.Mode=3
+  Stream.Open
+  Stream.Charset=DestCharset
+  Stream.WriteText Text
+  Stream.Position=0
+  Stream.Charset=SourceCharset
+  StrConv=Stream.ReadText
+End Function
+
+Set objArgs = WScript.Arguments
+'Dim ts, s
+  Const ForReading = 1
+  Set fso = CreateObject("Scripting.FileSystemObject")
+  ' Прочитать содержимое файла
+  Set ts = fso.OpenTextFile(objArgs(1), ForReading, TristateUseDefault)
+  mailx = ts.ReadAll
+  mailbody=strConv(mailx,"ibm866","windows-1251")
+  ts.Close
+Set objEmail = CreateObject("CDO.Message")
+objEmail.From = "info_btx@oms.kaluga.ru"
+objEmail.To = "info_btx@oms.kaluga.ru"
+objEmail.Bodypart.Charset = "windows-1251"
+'objEmail.Subject = "Ошибка создания архива" 
+'objEmail.Textbody = "Проверка отправки почты"
+objEmail.Subject = objArgs(0) 
+objEmail.Textbody = mailbody
+objEmail.Configuration.Fields.Item _
+    ("http://schemas.microsoft.com/cdo/configuration/sendusing") = 2
+objEmail.Configuration.Fields.Item _
+    ("http://schemas.microsoft.com/cdo/configuration/smtpserver") = "10.20.21.77" 
+objEmail.Configuration.Fields.Item _
+    ("http://schemas.microsoft.com/cdo/configuration/smtpserverport") = 25
+
+objEmail.Configuration.Fields.Update
+
+objEmail.Send
+
+
+
+
+Введите сообщение

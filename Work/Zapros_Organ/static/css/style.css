@@ -1,0 +1,43 @@
+form.login_form {
+    margin-left     : auto;
+    margin-right    : auto;
+    max-width       : 450px;
+    background-color: #ffcc00;
+    border          : 1px solid gray;
+    border-radius   : 5px;
+    padding         : 10px;
+}
+
+div.titl {
+    padding-left  : 170px;
+    padding-top   : 10px;
+    padding-bottom: 10px;
+    background    : url(../img/MARS_mission_logo.png) no-repeat;
+    font          : bold 24pt sans-serif;
+}
+
+h4 {
+    padding-left: 20px;
+    color       : gray;
+}
+
+body            { font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
+a, h1, h2       { color: #377ba8; }
+h1, h2          { margin: 0; }
+h1              { border-bottom: 2px solid #eee; }
+h2              { font-size: 1.2em; }
+
+table.dataframe, .dataframe th, .dataframe td {
+  border: 1px solid;
+  border-bottom: 1px solid #C8C8C8;
+  border-collapse: collapse;
+  text-align:left;
+  padding: 10px;
+  margin-bottom: 40px;
+  font-size: 0.9em;
+}
+
+tr:nth-child(odd)		{ background-color:#eee; }
+tr:nth-child(even)	{ background-color:#fff; }
+
+tr:hover            { background-color: #ffff99;}

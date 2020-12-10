@@ -10,7 +10,7 @@ CONN_STR = """Driver={SQL Server Native Client 11.0};
 conn = pyodbc.connect(CONN_STR)
 df = pd.read_sql("""SELECT IESDB.dbo.lv_GetXML() AS x""", conn)
 xml_file = df.iloc[0]['x']
-with open("D:\\1\\ksg23.xml", "w") as xml_writer:
+with open("D:\\1\\ksg23_2.xml", "w") as xml_writer:
     xml_writer.write(xml_file)
 print('Готово')
 

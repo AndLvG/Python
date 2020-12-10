@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64982248-b8ca-4e89-80f6-4d00fd99d6cb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bot_Telegram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Bot_Telegram/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="eced69ce-d836-483e-b855-f7da947f9f00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Suds_Client.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/parse_xml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zeep_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Unload_Pril7/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Unload_Pril7/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Unload_Pril7/save_xml_from_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Unload_Pril7/save_xml_from_server.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,37 +19,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/discord_bot_pogoda.py">
+        <entry file="file://$PROJECT_DIR$/parse_xml.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="11" column="22" lean-forward="true" selection-end-line="235" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="20">
+              <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_pogoda.py">
+        <entry file="file://$PROJECT_DIR$/zeep_client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3480">
-              <caret line="177" column="90" selection-start-line="52" selection-start-column="8" selection-end-line="177" selection-end-column="90" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -52,15 +44,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/async_test.py" />
-        <option value="$PROJECT_DIR$/discord_bot_kotik.py" />
-        <option value="$PROJECT_DIR$/discord_bot_commands.py" />
-        <option value="$PROJECT_DIR$/discord_timer_bot.py" />
-        <option value="$PROJECT_DIR$/discord_bot_gramotey.py" />
-        <option value="$PROJECT_DIR$/test_smile.py" />
-        <option value="$PROJECT_DIR$/api_ya_translate.py" />
-        <option value="$PROJECT_DIR$/test_pogoda.py" />
-        <option value="$PROJECT_DIR$/discord_bot_pogoda.py" />
+        <option value="$PROJECT_DIR$/WebService_Post.py" />
+        <option value="$PROJECT_DIR$/zeep_client.py" />
+        <option value="$PROJECT_DIR$/Suds_Client.py" />
+        <option value="$PROJECT_DIR$/parse_xml.py" />
       </list>
     </option>
   </component>
@@ -80,8 +67,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="Bot_Discord" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Bot_Discord" type="462c0819:PsiDirectoryNode" />
+              <item name="HTTP_Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HTTP_Testing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HTTP_Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -91,12 +82,11 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Work/Unload_Pril7" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Lvov\Python\Lyceum\Bot_Discord" />
+      <recent name="D:\Lvov\Python\Work\HTTP_Testing" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -111,9 +101,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.discord_bot_pogoda">
-    <configuration name="discord_bot_gramotey" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Bot_Discord" />
+  <component name="RunManager" selected="Python.parse_xml">
+    <configuration name="Suds_Client" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HTTP_Testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -124,7 +114,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/discord_bot_gramotey.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Suds_Client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -133,8 +123,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="discord_bot_pogoda" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Bot_Discord" />
+    <configuration name="WebService_Post" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HTTP_Testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -145,7 +135,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/discord_bot_pogoda.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WebService_Post.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -154,8 +144,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="discord_timer_bot" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Bot_Discord" />
+    <configuration name="parse_xml" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HTTP_Testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -166,7 +156,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/discord_timer_bot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/parse_xml.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -175,8 +165,8 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test_pogoda" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Bot_Discord" />
+    <configuration name="zeep_client" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HTTP_Testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -187,28 +177,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_pogoda.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test_smile" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Bot_Discord" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test_smile.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/zeep_client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -219,11 +188,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.discord_bot_pogoda" />
-        <item itemvalue="Python.test_pogoda" />
-        <item itemvalue="Python.test_smile" />
-        <item itemvalue="Python.discord_bot_gramotey" />
-        <item itemvalue="Python.discord_timer_bot" />
+        <item itemvalue="Python.parse_xml" />
+        <item itemvalue="Python.Suds_Client" />
+        <item itemvalue="Python.zeep_client" />
+        <item itemvalue="Python.WebService_Post" />
       </list>
     </recent_temporary>
   </component>
@@ -232,16 +200,17 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="64982248-b8ca-4e89-80f6-4d00fd99d6cb" name="Default Changelist" comment="" />
-      <created>1589276371387</created>
+      <changelist id="eced69ce-d836-483e-b855-f7da947f9f00" name="Default Changelist" comment="" />
+      <created>1591190591570</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1589276371387</updated>
+      <updated>1591190591570</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -262,91 +231,55 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/WebService_Post.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/parse_xml.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/discord_bot_kotik.py">
+    <entry file="file://$PROJECT_DIR$/Suds_Client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebService_Post.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="1319" column="41" selection-start-line="1319" selection-start-column="41" selection-end-line="1319" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parse_xml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zeep_client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api_ya_translate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="41" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="12" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/async_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord_bot_commands.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord_timer_bot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
-          <folding>
-            <element signature="e#537#734#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord_bot_gramotey.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#759#918#0" />
-            <element signature="e#1002#1928#0" />
-            <element signature="e#2024#2398#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_smile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/discord_bot_pogoda.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="22" lean-forward="true" selection-end-line="235" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_pogoda.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3480">
-          <caret line="177" column="90" selection-start-line="52" selection-start-column="8" selection-end-line="177" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

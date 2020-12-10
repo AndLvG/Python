@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35edca29-00dd-4e5d-b05a-0ae048a6eb7d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/async_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_commands.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_gramotey.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_kotik.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_bot_pogoda.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/discord_timer_bot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/test_pogoda.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/test_smile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog_excursion.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog_literator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_dialog_test_vopros.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_geocoder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_bot_translator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lyceum/lyc2/whatsApp_auto_send.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HTTP_Testing/Suds_Client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Discord/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_dice_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lyceum/Bot_Telegram/tg_dice_bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/save_xml_from_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/save_xml_from_server.py" afterDir="false" />
     </list>
@@ -34,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/unload_pril7.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1420">
+            <state relative-caret-position="807">
               <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -48,11 +33,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/save_xml_from_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -68,6 +50,7 @@
         <option value="$PROJECT_DIR$/../../Lyceum/lyc2/WEB.HTML/mars_resut_otbora.py" />
         <option value="$PROJECT_DIR$/../../Lyceum/lyc2/WEB.HTML/mars_image.py" />
         <option value="$PROJECT_DIR$/unload_pril7.py" />
+        <option value="$PROJECT_DIR$/WebService_Post.py" />
         <option value="$PROJECT_DIR$/save_xml_from_server.py" />
       </list>
     </option>
@@ -84,6 +67,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -95,15 +79,15 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Lyceum/Bot_Telegram" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Lvov\Python\Work\Unload_Pril7" />
       <recent name="D:\Lvov\Python\Lyceum\lyc2\WEB.HTML" />
     </key>
   </component>
@@ -120,6 +104,27 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.save_xml_from_server">
+    <configuration name="WebService_Post" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Unload_Pril7" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WebService_Post.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="mars_image" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Unload_Pril7" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -207,6 +212,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.save_xml_from_server" />
+        <item itemvalue="Python.WebService_Post" />
         <item itemvalue="Python.unload_pril7" />
         <item itemvalue="Python.mars_image" />
         <item itemvalue="Python.mars_resut_otbora" />
@@ -228,6 +234,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -256,6 +263,11 @@
           <line>47</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/WebService_Post.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -274,9 +286,10 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebService_Post.py" />
     <entry file="file://$PROJECT_DIR$/unload_pril7.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1420">
+        <state relative-caret-position="807">
           <caret line="86" column="25" selection-start-line="86" selection-start-column="25" selection-end-line="86" selection-end-column="25" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
@@ -288,11 +301,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/save_xml_from_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
