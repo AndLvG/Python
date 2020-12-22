@@ -90,6 +90,7 @@ if ready_df is not None:
 
 print(f'ready processing {datetime.datetime.now()}')
 
+# pip install git+https://github.com/talestorm-com/CHP_api.git
 # pip install pandas
 # pip install tabulate
 
